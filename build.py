@@ -90,7 +90,8 @@ def footer():
 <footer class="site-footer">
   <div class="wrap foot">
     <div>{logo('dark')}<p class="muted">Liquid Build LLC · {AREA}</p><p class="muted license" data-license></p></div>
-    <div class="foot-links">{links}</div>
+    <div class="foot-links">{links}<a href="/track-record">Track record</a></div>
+    <div class="foot-links"><a href="/general-contractor-miami">Miami</a><a href="/general-contractor-fort-lauderdale">Fort Lauderdale</a><a href="/general-contractor-palm-beach">Palm Beach</a><a href="/es" hreflang="es">Español</a></div>
     <div class="foot-links"><a href="tel:{PHONE_TEL}">{PHONE}</a><a href="mailto:{EMAIL}">{EMAIL}</a><a href="/agents">For AI agents (MCP)</a><a href="/privacy">Privacy</a><a href="https://liquidpermit.com/">Liquid Permit</a><a href="https://www.liquid-labor.com/">Liquid Labor</a></div>
   </div>
 </footer>"""
@@ -131,7 +132,11 @@ def ld_for(filename, title, desc):
         graph.append({"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
             {"@type": "ListItem", "position": 2, "name": sv["name"], "item": url}]})
-    faqs = SERVICES[slug]["faqs"] if slug in SERVICES else (GENERAL_FAQS if slug == "index" else [])
+    elif slug != "index":
+        graph.append({"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": title.split(" | ")[0], "item": url}]})
+    faqs = SERVICES[slug]["faqs"] if slug in SERVICES else (GENERAL_FAQS if slug == "index" else EXTRA_FAQS.get(slug, []))
     if faqs:
         graph.append({"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faqs]})
     return url, json.dumps({"@context": "https://schema.org", "@graph": graph}, ensure_ascii=False).replace("</", "<\\/")
@@ -142,6 +147,8 @@ def faq_section(faqs, title="Questions, <em>answered</em>"):
     return f'<section class="wrap section faq"><h2 class="display">{title}</h2><div class="faq-list">{items}</div></section>'
 
 
+EXTRA_FAQS = {}
+
 GENERAL_FAQS = [
     ("What does Liquid Build do?", CO["description"]),
     ("Where do you work?", "Miami-Dade, Broward and Palm Beach counties. That covers Miami, Fort Lauderdale, West Palm Beach and the towns in between, including Key Biscayne, Homestead and the Redland."),
@@ -150,15 +157,18 @@ GENERAL_FAQS = [
 ]
 
 
-def page(filename, title, desc, body, active="", over_photo=True, index=True):
+def page(filename, title, desc, body, active="", over_photo=True, index=True, og="dev-aerial.jpg", lang="en", alternates=None, preload=None):
     url, ld = ld_for(filename, title, desc)
+    alt_links = "".join(f'<link rel="alternate" hreflang="{hl}" href="{SITE}{p}">' for hl, p in (alternates or []))
+    pre = f'<link rel="preload" as="image" href="/images/{preload}" fetchpriority="high">' if preload else ""
     robots = "index, follow, max-image-preview:large, max-snippet:-1" if index else "noindex, follow"
     return f"""<!doctype html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{html.escape(title)}</title>
+{pre}{alt_links}
 <meta name="description" content="{html.escape(desc)}">
 <meta name="robots" content="{robots}">
 <link rel="canonical" href="{url}">
@@ -167,13 +177,13 @@ def page(filename, title, desc, body, active="", over_photo=True, index=True):
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
-<meta property="og:image" content="{SITE}/images/dev-aerial.jpg">
-<meta property="og:image:alt" content="Aerial view of a Liquid Build single-family community under construction">
-<meta property="og:locale" content="en_US">
+<meta property="og:image" content="{SITE}/images/{og}">
+<meta property="og:image:alt" content="{html.escape(title)}">
+<meta property="og:locale" content="{"es_US" if lang == "es" else "en_US"}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{html.escape(title)}">
 <meta name="twitter:description" content="{html.escape(desc)}">
-<meta name="twitter:image" content="{SITE}/images/dev-aerial.jpg">
+<meta name="twitter:image" content="{SITE}/images/{og}">
 <meta name="geo.region" content="US-FL">
 <meta name="geo.placename" content="Fort Lauderdale; Miami; West Palm Beach">
 <link rel="alternate" type="text/plain" title="LLM summary" href="/llms.txt">
@@ -263,9 +273,9 @@ def cards(title, items, note=""):
 COMMUNITIES = f"""
 <section class="wrap section">
   <div class="section-head"><h2 class="display">Communities</h2><p class="muted">Built by our team at Shores Development, a Miami-Dade home developer since 1950</p></div>
-  <figure class="wide-fig"><img src="/images/redland-aerial.jpg" alt="Aerial view of Redland Ranches: large single-family homes on acre lots" loading="lazy"><figcaption><b>Redland Ranches from the air</b><span>57 homes on acre lots · Redland, Miami-Dade</span></figcaption></figure>
+  <figure class="wide-fig"><img src="/images/redland-aerial.jpg" alt="Aerial view of Redland Ranches: large single-family homes on acre lots" loading="lazy"><figcaption><b>Redland Ranches from the air</b><span>140 lots, 84+ homes built · Redland, Miami-Dade</span></figcaption></figure>
   <div class="grid3 comm-grid">
-    {fig('redland-renoir-home.jpg','Finished Renoir model home at Redland Ranches with three-car garage','Redland Ranches','57 homes · pools standard',300)}
+    {fig('redland-renoir-home.jpg','Finished Renoir model home at Redland Ranches with three-car garage','Redland Ranches','140 lots · pools standard',300)}
     {fig('las-palmas.jpg','Finished single-story Las Palmas home with tile roof and wood fence','Las Palmas','19 homes · sold out',300)}
     {fig('toscana.jpg','Rendering of a one-story Toscana Estates home with a three-car garage','Toscana Estates','24 homes · sold out',300)}
   </div>
@@ -369,22 +379,23 @@ pages = {}
 pages["index.html"] = page(
     "index.html",
     "Liquid Build | South Florida's AI-Powered Builder & Developer",
-    "AI-powered general contractor and developer in South Florida: single-family communities, custom homes, commercial build-outs, schools and data centers. 300+ homes and units developed. Call 305-833-5025.",
+    "AI-powered general contractor and developer in South Florida. Communities, custom homes, commercial, schools and data centers. 10,000+ homes since 1950.",
     hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "From raw land<br><em>to keys in hand.</em>",
          "The AI-powered general contractor for South Florida. We develop and build communities, custom homes, commercial space, schools and data centers.", tall=True)
     + stats([("300+", "homes &amp; condo units developed"), ("1950", "Shores Development founded"), ("Land → Keys", "sitework, vertical, finishes"), ("AI-powered", "estimating, follow-up and permits")])
     + AI_SECTION + ESTIMATOR + SECTORS + COMMUNITIES + INSIDE + CUSTOM_HOMES + COMMERCIAL_GRID
     + faq_section(GENERAL_FAQS)
     + quote_form("Land / home development"),
+    alternates=[("en", "/"), ("es", "/es"), ("x-default", "/")], preload="dev-aerial.jpg",
 )
 
 pages["home-development.html"] = page(
     "home-development.html",
-    "Home Development & Single-Family Communities in South Florida | Liquid Build",
-    "Single-family community development in Miami-Dade, Broward and Palm Beach: land feasibility, entitlements, sitework, model homes and production building. Redland Ranches, Toscana, Las Palmas.",
+    "Home Development in South Florida | Liquid Build",
+    "Single-family communities from raw land to keys in Miami-Dade, Broward and Palm Beach. Redland Ranches, Toscana Estates, Las Palmas. Since 1950.",
     hero("redland-renoir-home.jpg", "Finished Renoir model home at Redland Ranches", "Home<br><em>development.</em>",
          "Raw land in, finished streets out. We take single-family communities from entitlements to closings.")
-    + stats([("57", "homes · Redland Ranches"), ("24", "homes · Toscana"), ("19", "units · Las Palmas"), ("300+", "units developed by our team")])
+    + stats([("140", "lots · Redland Ranches"), ("24", "homes · Toscana"), ("19", "units · Las Palmas"), ("300+", "units developed by our team")])
     + steps("Land to keys", [
         ("Land & feasibility", "Site due diligence, yield studies, budget and schedule before you close."),
         ("Entitlements & permits", "Plats, zoning and building permits, coordinated with Liquid Permit."),
@@ -400,8 +411,8 @@ pages["home-development.html"] = page(
 
 pages["design-build.html"] = page(
     "design-build.html",
-    "Design-Build Contractor in Miami & Fort Lauderdale | Liquid Build",
-    "Design-build in South Florida: one contract and one team for design, engineering, permits and construction of homes, commercial interiors, schools and industrial buildings.",
+    "Design-Build Contractor in South Florida | Liquid Build",
+    "One contract, one team: design, permits and construction for homes, commercial interiors, schools and industrial buildings in South Florida.",
     hero("pool-aerial.jpg", "Aerial view of a new pool and spa with paver deck", "Design-<em>build.</em>",
          "One contract and one team from first sketch to final inspection. Price and schedule are set early and stay put.")
     + cards("Why <em>design-build</em>", [
@@ -426,8 +437,8 @@ pages["design-build.html"] = page(
 
 pages["commercial.html"] = page(
     "commercial.html",
-    "Restaurant & Retail Build-Out Contractor in Miami | Liquid Build",
-    "Commercial build-outs in South Florida for restaurants, retail and offices, including Chili's at FIU, Starbucks and Carlos Albizu University. Built to brand spec and opening date.",
+    "Restaurant & Retail Build-Outs in Miami | Liquid Build",
+    "Restaurant, retail and office build-outs in South Florida: Chili's at FIU, Starbucks, Carlos Albizu University. Built to brand spec and opening day.",
     hero("chilis-fiu.jpg", "Finished circular bar inside a Chili's restaurant at FIU", "Commercial<br><em>build-outs.</em>",
          "Restaurant and retail interiors built to the brand's spec and ready by opening day.")
     + COMMERCIAL_GRID
@@ -441,7 +452,7 @@ pages["commercial.html"] = page(
 pages["schools.html"] = page(
     "schools.html",
     "School & Campus Construction in South Florida | Liquid Build",
-    "Charter, private and higher-education construction in Miami-Dade, Broward and Palm Beach, phased around the school calendar. Recent work: Carlos Albizu University, FIU Graham Center.",
+    "School and campus construction in South Florida, phased around the school calendar. Recent work: Carlos Albizu University and FIU Graham Center.",
     hero("albizu-university.jpg", "Carlos Albizu University campus building in Miami", "Schools &amp;<br><em>campuses.</em>",
          "New classrooms, renovations and campus work, scheduled around the school calendar so students never miss a day.")
     + cards("What we <em>build</em>", [
@@ -474,10 +485,10 @@ pages["schools.html"] = page(
 
 pages["data-centers.html"] = page(
     "data-centers.html",
-    "Data Center & Industrial Construction in Florida | Liquid Build",
-    "Power-first data center construction in Florida: site and power diligence, sitework and pads, shell and core, and electrical and mechanical coordination for fast energization.",
-    dark_hero("DATA CENTERS · INDUSTRIAL", "Power first.<br><em>Built fast.</em>",
-              "The constraint is megawatts, not square feet. We plan sites around power and build the shell, pads and infrastructure to energize on schedule.")
+    "Data Center Construction in Florida | Liquid Build",
+    "Power-first data center builder in Florida: site and power checks, sitework, shell and core, and electrical coordination to energize on schedule.",
+    hero("data-center-aisle.jpg", "Long aisle of electrical switchgear cabinets (stock photo)", "Power first.<br><em>Built fast.</em>",
+         "The constraint is megawatts, not square feet. We plan sites around power and build the shell, pads and infrastructure to energize on schedule.", cta="Talk to us")
     + cards("What we <em>deliver</em>", [
         ("Site &amp; power diligence", "Utility capacity, interconnection timeline, flood and zoning checks before you buy."),
         ("Sitework", "Grading, pads, duct banks, drainage and access roads."),
@@ -495,8 +506,7 @@ pages["data-centers.html"] = page(
     + f'<section class="wrap section callout"><p>Tracking the U.S. data center build-out: <a href="https://www.liquid-labor.com/tracker/">Liquid Labor project tracker →</a></p></section>'
     + faq_section(SERVICES["data-centers"]["faqs"])
     + quote_form("Data center / industrial", "Have a site<br><em>or a load?</em>", "Send the location and the megawatts you need. We reply within one business day."),
-    "data-centers.html",
-    over_photo=False,
+    "data-centers.html", og="data-center-aisle.jpg", preload="data-center-aisle.jpg",
 )
 
 pages["thanks.html"] = page(
@@ -548,6 +558,172 @@ pages["privacy.html"] = page(
     over_photo=False,
 )
 
+# ================= Track record =================
+LAND = [("Tamiami Airport", "673 single-family lots", "Lennar Homes"), ("Doral Landings", "918 lots", "Lennar Homes"),
+        ("Doral 58th Street", "751 lots", "Lennar Homes"), ("Suchman Property", "692 single-family lots", "Poinciana Homes, United Homes"),
+        ("Eureka Villas", "667 single-family lots", "Landstar Homes, Hamlet Development, Precious Homes"), ("Spanish Lakes", "525 single-family lots", "Lennar Homes"),
+        ("Keys Gate I", "515 condominiums", "Centergate Construction"), ("Keys Gate III", "856 acres, 506 lots", "Westbrooke, South Kendall Construction, Pride Homes, Shoma Homes"),
+        ("Woodfield Estates", "450 lots: water, sewer, paving, drainage, roads", "Shores development"), ("360 Developers (with Lennar)", "414 condominiums", "Joint venture"),
+        ("Poinciana Homes joint venture", "401 lots", "F&H Builders, Poinciana Homes, Monaco Builders"), ("Keys Gate II", "217 lots", "South Kendall Construction"),
+        ("Milton Property", "108 acres", "Lennar Homes, Caribe Homes"), ("Impression Gardens / Tropical Gardens", "108 acres", "Lennar Homes, Caribe Homes, Pride Homes")]
+BUILT = [("Oak Lake Homes", "110"), ("Xpandia Homes", "109"), ("Lakeside at the Hammocks", "91"), ("Redland Ranches", "84+ (140 lots)"),
+         ("Oakwood at the Hammocks", "75"), ("Oakwood Estates", "50"), ("Kendall Hammock Oaks", "31"), ("Shoreline at the Hammocks", "30")]
+land_rows = "".join(f"<tr><td>{a}</td><td>{s}</td><td>{c}</td></tr>" for a, s, c in LAND)
+built_rows = "".join(f"<tr><td>{a}</td><td>{n}</td></tr>" for a, n in BUILT)
+EXTRA_FAQS["track-record"] = [
+    ("Who is behind Liquid Build?", "The team comes from Shores Development, a Miami-Dade home developer founded in 1950 by Sam Rosen, and from Selenis Construction. Shores and its principals have developed, built and sold more than 10,000 single-family and condo units in South Florida."),
+    ("Which builders bought Shores Development land?", "Finished lots and parcels went to Lennar Homes, Landstar, Poinciana Homes, Pride Homes, Shoma Homes, Caribe Homes and others, across Doral, Kendall, Homestead and Broward County."),
+]
+pages["track-record.html"] = page(
+    "track-record.html",
+    "Track Record: 10,000+ Homes Since 1950 | Liquid Build",
+    "The team behind Liquid Build: Shores Development, founded 1950. 10,000+ homes and condos, 5,800+ lots sold to Lennar and others, plus commercial work.",
+    hero("redland-estate-home.jpg", "Finished estate home at Redland Ranches with a long paver driveway", "Since 1950.<br><em>10,000+ homes.</em>",
+         "The team behind Liquid Build comes from Shores Development, a Miami-Dade home developer founded in 1950, and Selenis Construction.")
+    + stats([("1950", "Shores Development founded"), ("10,000+", "homes and condos developed, built and sold"), ("5,800+", "lots developed in South Florida"), ("3", "counties: Miami-Dade, Broward, Palm Beach")])
+    + f"""
+<section class="wrap section">
+  <div class="section-head"><h2 class="display">Land <em>development</em></h2><p class="muted">Raw land turned into finished lots, then sold to national builders. 1979 to 2012.</p></div>
+  <div class="models"><table><thead><tr><th>Project (Miami-Dade)</th><th>Size</th><th>Sold to</th></tr></thead><tbody>{land_rows}</tbody></table>
+  <p class="muted small">With Lennar in Broward and Miami-Dade: Emerald Isles, Trail Walk and Courts of Tuscany, Paloma Lakes, Palm Aire Estates, Isles of Oakland Park, The Preserve at Coconut Creek, Silver Palm Holdings of Homestead, Doral Gardens, The Enclave at Doral and The Palms at Doral.</p></div>
+</section>
+<section class="wrap section">
+  <div class="grid two-col">
+    <div class="models"><h3>Homes we built</h3><table><thead><tr><th>Community (Miami-Dade)</th><th>Homes</th></tr></thead><tbody>{built_rows}</tbody></table></div>
+    <div class="models"><h3>Commercial and industrial</h3><table><thead><tr><th>Project</th><th>Role</th></tr></thead><tbody>
+      <tr><td>Espressway Industrial Park, Miami-Dade</td><td>Developer</td></tr>
+      <tr><td>Shores Supply Warehouse, Miami-Dade</td><td>General contractor</td></tr>
+      <tr><td>Wild Lime Park, Miami-Dade</td><td>General contractor</td></tr>
+      <tr><td>Goodyear Service Center, Largo</td><td>Developer and builder</td></tr>
+      <tr><td>Percon Construction, Palm Beach</td><td>Shell contractor</td></tr>
+      <tr><td>Carlos Albizu University, Miami</td><td>Second-floor remodel</td></tr>
+      <tr><td>Chili's, FIU Graham Center</td><td>Restaurant build-out</td></tr>
+    </tbody></table></div>
+  </div>
+</section>"""
+    + faq_section(EXTRA_FAQS["track-record"])
+    + quote_form("Land / home development", "Put 75 years<br><em>to work.</em>"),
+    "", og="redland-estate-home.jpg",
+)
+
+# ================= City pages =================
+def city_page(slug, city, county, h1, lead, local_html, img, alt, faqs):
+    EXTRA_FAQS[slug] = faqs
+    return page(
+        slug + ".html",
+        f"General Contractor in {city}, FL | Liquid Build",
+        f"AI-powered general contractor in {city}, {county}: new homes, additions, commercial build-outs, schools and data centers. Call 305-833-5025.",
+        hero(img, alt, h1, lead)
+        + local_html
+        + SECTORS
+        + faq_section(faqs)
+        + quote_form("New custom home", f"Building in<br><em>{city}?</em>"),
+        "", og=img,
+    )
+
+MIAMI_LOCAL = """
+<section class="wrap section">
+  <h2 class="display">Built in <em>Miami-Dade</em></h2>
+  <div class="cards">
+    <div class="card"><b>Redland and Homestead</b><p class="muted">Redland Ranches, Las Palmas, Toscana Estates and Casa Bella: single-family communities from raw land to keys.</p></div>
+    <div class="card"><b>Doral, Kendall and Tamiami</b><p class="muted">Thousands of finished lots developed and sold to Lennar and other builders, plus homes built at the Hammocks and Oak Lake.</p></div>
+    <div class="card"><b>Campus and commercial</b><p class="muted">Carlos Albizu University, Chili's at FIU's Graham Center, Starbucks and Oasis in Key Biscayne.</p></div>
+    <div class="card"><b>Hurricane code</b><p class="muted">Miami-Dade is in the High-Velocity Hurricane Zone. We spec HVHZ-approved windows, doors and roofing from the start.</p></div>
+  </div>
+</section>"""
+FTL_LOCAL = """
+<section class="wrap section">
+  <h2 class="display">Built in <em>Broward</em></h2>
+  <div class="cards">
+    <div class="card"><b>Home base</b><p class="muted">Liquid Build is based in Fort Lauderdale, a short drive from job sites across Broward County.</p></div>
+    <div class="card"><b>Broward communities</b><p class="muted">Our team developed land for Lennar communities including Emerald Isles, Paloma Lakes, Palm Aire Estates, Isles of Oakland Park and The Preserve at Coconut Creek.</p></div>
+    <div class="card"><b>Hurricane code</b><p class="muted">Broward is in the High-Velocity Hurricane Zone, like Miami-Dade. Windows, doors and roofing need HVHZ-rated products.</p></div>
+    <div class="card"><b>Flood zones</b><p class="muted">Much of coastal Broward is in a FEMA flood zone. We check elevation rules before design so the budget holds.</p></div>
+  </div>
+</section>"""
+PB_LOCAL = """
+<section class="wrap section">
+  <h2 class="display">Built in <em>Palm Beach</em></h2>
+  <div class="cards">
+    <div class="card"><b>Industrial and data centers</b><p class="muted">Palm Beach County has land and power for industrial and data center projects. We screen sites by megawatts and time to energize.</p></div>
+    <div class="card"><b>Shell construction</b><p class="muted">Our team has worked as shell contractor in Palm Beach and as developer and builder on industrial parks in South Florida.</p></div>
+    <div class="card"><b>Custom homes and additions</b><p class="muted">New homes, additions and pools from Boca Raton to Jupiter, with design-build pricing set early.</p></div>
+    <div class="card"><b>Wind code</b><p class="muted">Palm Beach is outside the HVHZ but is a wind-borne debris region: openings need impact-rated products or approved shutters.</p></div>
+  </div>
+</section>"""
+pages["general-contractor-miami.html"] = city_page("general-contractor-miami", "Miami", "Miami-Dade County",
+    "General contractor<br><em>in Miami.</em>", "New homes, communities, commercial build-outs and campus work across Miami-Dade, from Doral to the Redland.",
+    MIAMI_LOCAL, "redland-renoir-home.jpg", "Finished Renoir model home at Redland Ranches in Miami-Dade",
+    [("Do you build in Homestead and the Redland?", "Yes. Our team built Redland Ranches, Las Palmas, Toscana Estates and Casa Bella in south Miami-Dade."),
+     ("Do Miami-Dade projects need special windows and roofing?", "Yes. Miami-Dade is in the High-Velocity Hurricane Zone, so windows, doors and roofing need HVHZ-approved products such as those with a Miami-Dade NOA."),
+     ("Can I get a price before a site visit?", "Yes. Use the ballpark estimator on our home page or ask your AI assistant through our MCP server. A real bid follows a site visit.")])
+pages["general-contractor-fort-lauderdale.html"] = city_page("general-contractor-fort-lauderdale", "Fort Lauderdale", "Broward County",
+    "General contractor<br><em>in Fort Lauderdale.</em>", "Based in Fort Lauderdale. New homes, additions, restaurant build-outs and development across Broward County.",
+    FTL_LOCAL, "redland-3car-home.jpg", "Single-family home with three-car garage built by our team",
+    [("Are you based in Fort Lauderdale?", "Yes. Liquid Build is based in Fort Lauderdale and works across Broward, Miami-Dade and Palm Beach."),
+     ("Is Broward in the hurricane zone?", "Yes. Broward and Miami-Dade are both in the High-Velocity Hurricane Zone, which sets stricter rules for windows, doors and roofing."),
+     ("Do you handle permits in Broward?", "Yes. Permits and approvals are coordinated with our sister company Liquid Permit.")])
+pages["general-contractor-palm-beach.html"] = city_page("general-contractor-palm-beach", "Palm Beach", "Palm Beach County",
+    "General contractor<br><em>in Palm Beach.</em>", "Industrial sites, data centers, custom homes and additions across Palm Beach County.",
+    PB_LOCAL, "data-center-aisle.jpg", "Long aisle of electrical switchgear cabinets (stock photo)",
+    [("Do you build data centers in Palm Beach County?", "Yes. We handle site and power diligence, sitework, shell and core, and electrical and mechanical coordination with your engineers."),
+     ("Is Palm Beach in the High-Velocity Hurricane Zone?", "No. The HVHZ covers Miami-Dade and Broward. Palm Beach is a wind-borne debris region, so openings still need impact protection."),
+     ("Do you build homes in Boca Raton and Jupiter?", "Yes. New custom homes, additions and pools across Palm Beach County.")])
+
+# ================= Spanish page =================
+ES_FAQS = [("¿Dónde trabajan?", "En los condados de Miami-Dade, Broward y Palm Beach: Miami, Fort Lauderdale, West Palm Beach y todas las ciudades entre ellas."),
+           ("¿Cuánto tardan en responder?", "Respondemos en un día hábil. Para algo urgente, llame o envíe un texto al " + PHONE + "."),
+           ("¿Hablan español?", "Sí. Puede escribirnos o llamarnos en español.")]
+EXTRA_FAQS["es"] = ES_FAQS
+es_opts = "".join(f"<option>{o}</option>" for o in ["Desarrollo de terreno / comunidad", "Casa nueva", "Remodelación / ampliación", "Local comercial", "Escuela", "Centro de datos / industrial", "Otro"])
+pages["es.html"] = page(
+    "es.html",
+    "Liquid Build | Constructor con IA en el sur de la Florida",
+    "Contratista general con IA en Miami, Fort Lauderdale y Palm Beach: comunidades, casas, locales, escuelas y centros de datos. Desde 1950.",
+    hero("dev-aerial.jpg", "Vista aérea de una comunidad de casas en construcción", "Del terreno<br><em>a las llaves.</em>",
+         "El contratista general impulsado por IA del sur de la Florida. Desarrollamos y construimos comunidades, casas, locales comerciales, escuelas y centros de datos.", cta="Empiece su proyecto")
+    + stats([("1950", "fundación de Shores Development"), ("10,000+", "casas y condominios desarrollados"), ("140", "lotes en Redland Ranches"), ("IA", "estimados y seguimiento")])
+    + """
+<section class="wrap section">
+  <h2 class="display">Lo que <em>construimos</em></h2>
+  <div class="cards">
+    <div class="card"><b>Comunidades</b><p class="muted">Del terreno a las llaves: estudios, permisos, calles, drenaje y casas modelo.</p></div>
+    <div class="card"><b>Casas nuevas y ampliaciones</b><p class="muted">Casas a la medida, segundos pisos, piscinas y ventanas de impacto.</p></div>
+    <div class="card"><b>Locales comerciales</b><p class="muted">Restaurantes y tiendas listos para el día de apertura.</p></div>
+    <div class="card"><b>Escuelas y centros de datos</b><p class="muted">Obras planificadas según el calendario escolar o según la energía disponible.</p></div>
+  </div>
+  <p class="lead" style="margin-top:28px">¿Quiere un precio aproximado ahora? Use el <a href="/#estimate">estimador en nuestra página principal</a>. Es gratis y no pide registro.</p>
+</section>"""
+    + faq_section(ES_FAQS, "Preguntas <em>frecuentes</em>")
+    + f"""
+<section id="quote" class="quote wrap grid">
+  <div class="quote-copy">
+    <h2 class="display">Construyamos <em>juntos.</em></h2>
+    <p class="muted lead">Cuéntenos qué tiene: un terreno, un lote o un local. Respondemos en un día hábil.</p>
+    <p class="contact-lines"><a href="tel:{PHONE_TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a><br><span class="muted">{AREA}</span></p>
+  </div>
+  <form class="quote-form" action="/api/quote" method="post" data-quote>
+    <div class="row2">
+      <label>Nombre<input name="name" type="text" autocomplete="name" required></label>
+      <label>Teléfono<input name="phone" type="tel" autocomplete="tel" required></label>
+    </div>
+    <label>Correo electrónico<input name="email" type="email" autocomplete="email" required></label>
+    <div class="row2">
+      <label>Proyecto<select name="project">{es_opts}</select></label>
+      <label>Ubicación<input name="location" type="text" placeholder="Ciudad o dirección"></label>
+    </div>
+    <label>Detalles<textarea name="details" rows="3" placeholder="Tamaño, presupuesto, fecha. Lo que sepa."></textarea></label>
+    <label class="consent"><input type="checkbox" name="sms_consent" value="yes" checked> Envíenme mensajes de texto sobre esta solicitud. Pueden aplicar cargos; responda STOP para cancelar.</label>
+    <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
+    <input type="hidden" name="page" value="">
+    <button type="submit" class="btn dark">Pedir un estimado</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>""",
+    "", lang="es", alternates=[("en", "/"), ("es", "/es"), ("x-default", "/")], preload="dev-aerial.jpg",
+)
+
+
 MCP_URL = SITE + "/api/mcp"
 AGENT_TOOLS = [
     ("get_company_info", "Who we are, services, service area, contact details and track record."),
@@ -559,8 +735,8 @@ AGENT_TOOLS = [
 tools_html = "".join(f'<div class="line"><b><code>{n}</code></b><span class="muted">{d}</span></div>' for n, d in AGENT_TOOLS)
 pages["agents.html"] = page(
     "agents.html",
-    "Connect Your AI Agent to Liquid Build (MCP) | Estimates & Construction Help",
-    "AI assistants can connect to Liquid Build's MCP server for ballpark construction estimates, help grounding project ideas in South Florida code and permits, and quote requests.",
+    "AI Agents: Connect to Liquid Build via MCP | Liquid Build",
+    "Let Claude, ChatGPT and other AI assistants get ballpark construction estimates, South Florida permit and code help, and quotes from Liquid Build.",
     dark_hero("FOR AI AGENTS · MCP", "Your agent can<br><em>talk to us.</em>",
               "Connect any MCP-capable assistant to get ballpark estimates, ground a project idea, or send us a quote request in seconds.")
     + f"""
@@ -590,9 +766,21 @@ for name, content in pages.items():
     with open(os.path.join(OUT, name), "w") as f:
         f.write(content)
 # ---- machine-readable files for search engines and AI crawlers ----
-urls = [("privacy", "0.3"), ("", "1.0"), ("home-development", "0.9"), ("design-build", "0.9"), ("commercial", "0.9"), ("schools", "0.9"), ("data-centers", "0.9"), ("agents", "0.6")]
-sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
-    f"  <url><loc>{SITE}/{u}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>\n" for u, pr in urls) + "</urlset>\n"
+urls = [("privacy", "0.3"), ("track-record", "0.8"), ("general-contractor-miami", "0.8"), ("general-contractor-fort-lauderdale", "0.8"), ("general-contractor-palm-beach", "0.8"), ("es", "0.8"), ("", "1.0"), ("home-development", "0.9"), ("design-build", "0.9"), ("commercial", "0.9"), ("schools", "0.9"), ("data-centers", "0.9"), ("agents", "0.6")]
+def _imgs(u):
+    f = os.path.join(OUT, (u or "index") + ".html")
+    try:
+        found = re.findall(r'src="/images/([^"]+)" alt="([^"]*)"', open(f).read())
+    except OSError:
+        return ""
+    seen, out = set(), ""
+    for src, alt in found:
+        if src in seen: continue
+        seen.add(src)
+        out += f"<image:image><image:loc>{SITE}/images/{src}</image:loc><image:title>{html.escape(alt)}</image:title></image:image>"
+    return out
+sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + "".join(
+    f"  <url><loc>{SITE}/{u}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority>{_imgs(u)}</url>\n" for u, pr in urls) + "</urlset>\n"
 open(os.path.join(OUT, "sitemap.xml"), "w").write(sitemap)
 
 bots = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "Claude-SearchBot", "anthropic-ai", "PerplexityBot", "Perplexity-User",
@@ -614,6 +802,13 @@ Replies to quote requests within one business day.
 
 ## Track record
 """ + "\n".join("- " + t for t in CO["track"]) + f"""
+
+## Track record and local pages
+- [Track record: 10,000+ homes since 1950]({SITE}/track-record)
+- [General contractor in Miami]({SITE}/general-contractor-miami)
+- [General contractor in Fort Lauderdale]({SITE}/general-contractor-fort-lauderdale)
+- [General contractor in Palm Beach]({SITE}/general-contractor-palm-beach)
+- [En español]({SITE}/es)
 
 ## For AI agents
 - MCP server (Streamable HTTP, no auth): {MCP_URL}

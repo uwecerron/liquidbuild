@@ -24,8 +24,9 @@
     "https://liquidpermit.com/"
   ],
   "track": [
-    "Shores Development, founded in 1950, a second-generation Miami-Dade home developer. 300+ homes and condo units developed by our team (Shores Development, Selenis Construction)",
-    "Single-family communities: Redland Ranches (57 homes on acre lots, Renoir and Van Gogh models), Toscana Estates (24 homes), Las Palmas (19 homes), Casa Bella (twin and single-family homes), Estate Mansions",
+    "Shores Development, founded in 1950 by Sam Rosen: a second-generation Miami-Dade developer whose team has developed, built and sold more than 10,000 single-family and condo units in South Florida",
+    "Single-family communities: Redland Ranches (140 lots, 84+ homes built, Renoir and Van Gogh models), Toscana Estates (24 homes), Las Palmas (19 homes), Casa Bella (twin and single-family homes), Oak Lake Homes (110), Lakeside at the Hammocks (91)",
+    "Land development: 5,800+ lots developed in Miami-Dade and sold to Lennar Homes and other builders, including Tamiami Airport, Doral Landings, Spanish Lakes and Keys Gate",
     "Commercial and institutional: Carlos Albizu University second-floor remodel, Chili's at FIU Graham Center, Starbucks, quick-service restaurants, Oasis in Key Biscayne",
     "AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly"
   ],
@@ -41,7 +42,7 @@
         ],
         [
           "How many homes have you developed?",
-          "Our team has developed 300+ homes and condo units in South Florida, including Redland Ranches (57 homes), Toscana (24 homes) and Las Palmas (19 units)."
+          "Our team at Shores Development has developed, built and sold more than 10,000 single-family and condo units since 1950, including Redland Ranches, Toscana Estates and Las Palmas."
         ],
         [
           "Who handles permits and plats?",
@@ -131,7 +132,7 @@
       "name": "Redland Ranches",
       "location": "Redland, Miami-Dade",
       "type": "Single-family community",
-      "detail": "57 homes on acre lots, pools standard",
+      "detail": "140 lots, 84+ homes built, pools standard",
       "image": "/images/redland-renoir-home.jpg"
     },
     {

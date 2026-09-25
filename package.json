@@ -5,7 +5,8 @@
   "description": "Liquid Build website, CRM and MCP server (Vercel)",
   "scripts": {
     "dev": "node server.js",
-    "build:pages": "python3 build.py"
+    "build:pages": "python3 build.py",
+    "indexnow": "node scripts/indexnow.js"
   },
   "dependencies": {
     "postgres": "^3.4.5"
