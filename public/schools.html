@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schools &amp; Education — Liquid Build</title>
+<meta name="description" content="Charter, private and higher-education construction in South Florida — built around the school calendar.">
+<meta property="og:title" content="Schools &amp; Education — Liquid Build">
+<meta property="og:description" content="Charter, private and higher-education construction in South Florida — built around the school calendar.">
+<meta property="og:image" content="/images/dev-aerial.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141414'/%3E%3Cpath d='M12 40c6-5 12-5 20 0s14 5 20 0' stroke='%236FC3CF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M16 30V20l16-8 16 8v10' stroke='%23fff' stroke-width='4' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header on-photo">
+  <div class="wrap bar">
+    <a href="/" class="brand" aria-label="liquid build home"><span class="logo "><b>liquid</b><i>build</i></span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span></label>
+    <nav aria-label="Main"><a href="/home-development">Home Development</a><a href="/design-build">Design-Build</a><a href="/commercial">Commercial</a><a href="/schools" aria-current="page">Schools</a><a href="/data-centers">Data Centers</a><a href="#quote" class="pill">Get a quote</a></nav>
+  </div>
+</header>
+<main>
+
+<section class="hero">
+  <img src="/images/albizu-university.jpg" alt="Carlos Albizu University campus building in Miami" fetchpriority="high">
+  <div class="scrim"></div>
+  <div class="wrap hero-inner">
+    <h1 class="display">Schools &amp;<br><em>campuses.</em></h1>
+    <div class="hero-side">
+      <p>New classrooms, renovations and campus work — scheduled around the school calendar so students never miss a day.</p>
+      <a href="#quote" class="btn accent">Start your project</a>
+    </div>
+  </div>
+</section><section class="wrap section"><h2 class="display">What we <em>build</em></h2><div class="cards"><div class="card"><b>Charter &amp; private schools</b><p class="muted">New buildings, conversions and additions.</p></div><div class="card"><b>Higher education</b><p class="muted">Floor remodels, labs, food service and student spaces.</p></div><div class="card"><b>Summer renovations</b><p class="muted">Work phased to finish before the first bell.</p></div><div class="card"><b>Safety &amp; hardening</b><p class="muted">Impact windows, secure entries, fire and life safety.</p></div></div><p class="muted small note">Recent: second-floor remodel at Carlos Albizu University; Chili's at FIU's Graham Center.</p></section><section class="wrap section"><h2 class="display">Built around the calendar</h2><ol class="steps"><li><span class="num">1</span><b>Walkthrough</b><p class="muted">We tour the campus and map what can't be disrupted.</p></li><li><span class="num">2</span><b>Phase plan</b><p class="muted">Work split into windows — nights, weekends, summers.</p></li><li><span class="num">3</span><b>Permit</b><p class="muted">Plans filed and tracked with Liquid Permit.</p></li><li><span class="num">4</span><b>Build &amp; hand over</b><p class="muted">Rooms ready, inspected and clean before class.</p></li></ol></section>
+<section id="quote" class="quote wrap grid">
+  <div class="quote-copy">
+    <h2 class="display">Next school year?<br><em>Start now.</em></h2>
+    <p class="muted lead">Land, a lot or a lease — tell us what you have. We reply within one business day.</p>
+    <p class="contact-lines"><a href="tel:+13058335025">305-833-5025</a><br><a href="mailto:uwecerron@gmail.com">uwecerron@gmail.com</a><br><span class="muted">Fort Lauderdale · Miami · Palm Beach</span></p>
+  </div>
+  <form class="quote-form" action="/api/quote" method="post" data-quote>
+    <div class="row2">
+      <label>Name<input name="name" type="text" autocomplete="name" required></label>
+      <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+    </div>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <div class="row2">
+      <label>Project<select name="project"><option>Land / home development</option><option>Design-build</option><option>New custom home</option><option>Renovation / addition</option><option>Commercial build-out</option><option selected>School / education</option><option>Data center / industrial</option><option>Other</option></select></label>
+      <label>Location<input name="location" type="text" placeholder="City or address"></label>
+    </div>
+    <label>Details<textarea name="details" rows="3" placeholder="Size, budget, timeline — whatever you know"></textarea></label>
+    <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
+    <input type="hidden" name="page" value="">
+    <button type="submit" class="btn dark">Request a quote</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div><span class="logo dark"><b>liquid</b><i>build</i></span><p class="muted">Liquid Build LLC · Fort Lauderdale · Miami · Palm Beach</p><p class="muted license" data-license></p></div>
+    <div class="foot-links"><a href="/home-development">Home Development</a><a href="/design-build">Design-Build</a><a href="/commercial">Commercial</a><a href="/schools">Schools</a><a href="/data-centers">Data Centers</a></div>
+    <div class="foot-links"><a href="tel:+13058335025">305-833-5025</a><a href="mailto:uwecerron@gmail.com">uwecerron@gmail.com</a><a href="https://liquidpermit.com/">Liquid Permit</a><a href="https://www.liquid-labor.com/">Liquid Labor</a></div>
+  </div>
+</footer>
+<script src="/app.js" defer></script>
+</body>
+</html>

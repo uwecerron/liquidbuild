@@ -1,0 +1,13 @@
+{
+  "name": "liquid-build-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "liquid build website — static pages plus a quote-form function (Vercel)",
+  "scripts": {
+    "dev": "node server.js",
+    "build:pages": "python3 build.py"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commercial Build-Outs — Liquid Build</title>
+<meta name="description" content="Restaurant and retail build-outs in South Florida, built to brand spec and opening date.">
+<meta property="og:title" content="Commercial Build-Outs — Liquid Build">
+<meta property="og:description" content="Restaurant and retail build-outs in South Florida, built to brand spec and opening date.">
+<meta property="og:image" content="/images/dev-aerial.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141414'/%3E%3Cpath d='M12 40c6-5 12-5 20 0s14 5 20 0' stroke='%236FC3CF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M16 30V20l16-8 16 8v10' stroke='%23fff' stroke-width='4' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header on-photo">
+  <div class="wrap bar">
+    <a href="/" class="brand" aria-label="liquid build home"><span class="logo "><b>liquid</b><i>build</i></span></a>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
+    <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span></label>
+    <nav aria-label="Main"><a href="/home-development">Home Development</a><a href="/design-build">Design-Build</a><a href="/commercial" aria-current="page">Commercial</a><a href="/schools">Schools</a><a href="/data-centers">Data Centers</a><a href="#quote" class="pill">Get a quote</a></nav>
+  </div>
+</header>
+<main>
+
+<section class="hero">
+  <img src="/images/chilis-fiu.jpg" alt="Finished circular bar inside a Chili&#x27;s restaurant at FIU" fetchpriority="high">
+  <div class="scrim"></div>
+  <div class="wrap hero-inner">
+    <h1 class="display">Commercial<br><em>build-outs.</em></h1>
+    <div class="hero-side">
+      <p>Restaurant and retail interiors built to the brand's spec — and the opening date.</p>
+      <a href="#quote" class="btn accent">Start your project</a>
+    </div>
+  </div>
+</section>
+<section class="wrap section">
+  <h2 class="display">Commercial <em>build-outs</em></h2>
+  <div class="grid4">
+    <figure><img src="/images/chilis-fiu.jpg" alt="Finished circular bar inside a Chili&#x27;s restaurant" loading="lazy" style="height:300px"><figcaption><b>Chili's</b><span>FIU, Miami</span></figcaption></figure>
+    <figure><img src="/images/starbucks-buildout.jpg" alt="Crew installing millwork at a Starbucks counter" loading="lazy" style="height:300px"><figcaption><b>Starbucks</b><span>Miami</span></figcaption></figure>
+    <figure><img src="/images/restaurant-counter.jpg" alt="Finished quick-service restaurant counter with menu boards" loading="lazy" style="height:300px"><figcaption><b>Quick-service restaurant</b><span>Build-out</span></figcaption></figure>
+    <figure><img src="/images/oasis-key-biscayne.jpg" alt="Renovated Oasis storefront in Key Biscayne" loading="lazy" style="height:300px"><figcaption><b>Oasis</b><span>Key Biscayne</span></figcaption></figure>
+  </div>
+</section>
+<section class="band">
+  <div class="wrap grid">
+    <div class="band-copy"><h2 class="display">What we <em>deliver</em></h2><div class="rows"><div class="row"><span>Restaurants</span><span class="muted">Kitchens, bars, dining rooms</span></div><div class="row"><span>Retail</span><span class="muted">Storefronts &amp; interiors</span></div><div class="row"><span>Offices</span><span class="muted">Tenant improvements</span></div><div class="row"><span>Hospitality</span><span class="muted">Renovations while open</span></div></div></div>
+    <div class="band-pics"><img src="/images/interior-buildout.jpg" alt="Commercial interior under construction with new ceiling lighting" loading="lazy"><img src="/images/starbucks-buildout.jpg" alt="Crew installing millwork at a Starbucks counter" loading="lazy"></div>
+  </div>
+</section>
+<section id="quote" class="quote wrap grid">
+  <div class="quote-copy">
+    <h2 class="display">Opening date?<br><em>We'll hit it.</em></h2>
+    <p class="muted lead">Land, a lot or a lease — tell us what you have. We reply within one business day.</p>
+    <p class="contact-lines"><a href="tel:+13058335025">305-833-5025</a><br><a href="mailto:uwecerron@gmail.com">uwecerron@gmail.com</a><br><span class="muted">Fort Lauderdale · Miami · Palm Beach</span></p>
+  </div>
+  <form class="quote-form" action="/api/quote" method="post" data-quote>
+    <div class="row2">
+      <label>Name<input name="name" type="text" autocomplete="name" required></label>
+      <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+    </div>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <div class="row2">
+      <label>Project<select name="project"><option>Land / home development</option><option>Design-build</option><option>New custom home</option><option>Renovation / addition</option><option selected>Commercial build-out</option><option>School / education</option><option>Data center / industrial</option><option>Other</option></select></label>
+      <label>Location<input name="location" type="text" placeholder="City or address"></label>
+    </div>
+    <label>Details<textarea name="details" rows="3" placeholder="Size, budget, timeline — whatever you know"></textarea></label>
+    <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
+    <input type="hidden" name="page" value="">
+    <button type="submit" class="btn dark">Request a quote</button>
+    <p class="form-status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap foot">
+    <div><span class="logo dark"><b>liquid</b><i>build</i></span><p class="muted">Liquid Build LLC · Fort Lauderdale · Miami · Palm Beach</p><p class="muted license" data-license></p></div>
+    <div class="foot-links"><a href="/home-development">Home Development</a><a href="/design-build">Design-Build</a><a href="/commercial">Commercial</a><a href="/schools">Schools</a><a href="/data-centers">Data Centers</a></div>
+    <div class="foot-links"><a href="tel:+13058335025">305-833-5025</a><a href="mailto:uwecerron@gmail.com">uwecerron@gmail.com</a><a href="https://liquidpermit.com/">Liquid Permit</a><a href="https://www.liquid-labor.com/">Liquid Labor</a></div>
+  </div>
+</footer>
+<script src="/app.js" defer></script>
+</body>
+</html>
