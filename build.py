@@ -91,7 +91,7 @@ def footer():
   <div class="wrap foot">
     <div>{logo('dark')}<p class="muted">Liquid Build LLC · {AREA}</p><p class="muted license" data-license></p></div>
     <div class="foot-links">{links}</div>
-    <div class="foot-links"><a href="tel:{PHONE_TEL}">{PHONE}</a><a href="mailto:{EMAIL}">{EMAIL}</a><a href="/agents">For AI agents (MCP)</a><a href="https://liquidpermit.com/">Liquid Permit</a><a href="https://www.liquid-labor.com/">Liquid Labor</a></div>
+    <div class="foot-links"><a href="tel:{PHONE_TEL}">{PHONE}</a><a href="mailto:{EMAIL}">{EMAIL}</a><a href="/agents">For AI agents (MCP)</a><a href="/privacy">Privacy</a><a href="https://liquidpermit.com/">Liquid Permit</a><a href="https://www.liquid-labor.com/">Liquid Labor</a></div>
   </div>
 </footer>"""
 
@@ -493,6 +493,41 @@ pages["404.html"] = page(
     over_photo=False, index=False,
 )
 
+
+pages["privacy.html"] = page(
+    "privacy.html",
+    "Privacy Policy | Liquid Build",
+    "How Liquid Build collects, uses and protects information from our website, quote forms, text messages and MCP server for AI assistants.",
+    f"""
+<section class="wrap section legal">
+  <h1 class="display">Privacy <em>policy</em></h1>
+  <p class="muted">Last updated {TODAY}. Liquid Build LLC ("we") runs this website, our quote forms, our text messaging and our MCP server for AI assistants.</p>
+  <h2>What we collect</h2>
+  <ul>
+    <li><b>What you send us:</b> your name, phone, email, project type, location and project details, from our forms, by text, by email, or through an AI assistant using our <code>request_quote</code> tool.</li>
+    <li><b>Estimate requests:</b> the project type, size, finish level and city you enter in the ballpark estimator or send to our MCP tools. These are not stored with your name.</li>
+    <li><b>Technical data:</b> your IP address and browser or client name, used to stop spam and abuse.</li>
+  </ul>
+  <h2>How we use it</h2>
+  <ul>
+    <li>To reply to you, prepare estimates and bids, and run your project.</li>
+    <li>To send you texts about your request, only if you agreed. Reply STOP to opt out at any time.</li>
+    <li>We do not sell your information and we do not use it for third-party advertising.</li>
+  </ul>
+  <h2>Who helps us</h2>
+  <p>We use service providers to run the site and talk with you: Vercel (hosting), Neon (database), Twilio (text messages), Resend and FormSubmit (email). They process data only to provide those services.</p>
+  <h2>AI assistants and our MCP server</h2>
+  <p>Our MCP server at <code>{SITE}/api/mcp</code> does not require an account. Estimate and planning tools do not store personal information. When an assistant calls <code>request_quote</code>, the name, contact details and project description it sends are saved as a quote request, the same as our website form. We do not receive your conversation with the assistant beyond what the tool call contains.</p>
+  <h2>How long we keep it</h2>
+  <p>We keep quote requests and project records as long as needed to respond, do the work and meet legal and warranty obligations. Ask us to delete your information at any time.</p>
+  <h2>Your choices</h2>
+  <p>To see, correct or delete your information, or to stop texts or emails, contact us at <a href="mailto:{EMAIL}">{EMAIL}</a> or {PHONE}.</p>
+  <h2>Contact</h2>
+  <p>Liquid Build LLC · {AREA} · <a href="mailto:{EMAIL}">{EMAIL}</a> · {PHONE}</p>
+</section>""",
+    over_photo=False,
+)
+
 MCP_URL = SITE + "/api/mcp"
 AGENT_TOOLS = [
     ("get_company_info", "Who we are, services, service area, contact details and track record."),
@@ -535,7 +570,7 @@ for name, content in pages.items():
     with open(os.path.join(OUT, name), "w") as f:
         f.write(content)
 # ---- machine-readable files for search engines and AI crawlers ----
-urls = [("", "1.0"), ("home-development", "0.9"), ("design-build", "0.9"), ("commercial", "0.9"), ("schools", "0.9"), ("data-centers", "0.9"), ("agents", "0.6")]
+urls = [("privacy", "0.3"), ("", "1.0"), ("home-development", "0.9"), ("design-build", "0.9"), ("commercial", "0.9"), ("schools", "0.9"), ("data-centers", "0.9"), ("agents", "0.6")]
 sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + "".join(
     f"  <url><loc>{SITE}/{u}</loc><lastmod>{TODAY}</lastmod><priority>{pr}</priority></url>\n" for u, pr in urls) + "</urlset>\n"
 open(os.path.join(OUT, "sitemap.xml"), "w").write(sitemap)
@@ -590,7 +625,7 @@ open(os.path.join(OUT, "llms-full.txt"), "w").write("".join(full))
 os.makedirs(os.path.join(OUT, ".well-known"), exist_ok=True)
 open(os.path.join(OUT, ".well-known", "mcp.json"), "w").write(json.dumps({
     "name": "liquid-build", "title": "Liquid Build: construction estimates and help", "description": CO["description"],
-    "url": MCP_URL, "transport": "streamable-http", "authentication": "none",
+    "url": MCP_URL, "transport": "streamable-http", "authentication": "none", "privacy_policy": SITE + "/privacy", "documentation": SITE + "/agents",
     "tools": [{"name": n, "description": d} for n, d in AGENT_TOOLS], "contact": {"phone": PHONE, "email": EMAIL}, "website": SITE}, indent=2))
 
 print("built", len(pages), "pages + sitemap, robots, llms.txt, llms-full.txt")

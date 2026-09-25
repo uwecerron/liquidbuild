@@ -5,6 +5,8 @@
   "url": "https://liquidbuild.vercel.app/api/mcp",
   "transport": "streamable-http",
   "authentication": "none",
+  "privacy_policy": "https://liquidbuild.vercel.app/privacy",
+  "documentation": "https://liquidbuild.vercel.app/agents",
   "tools": [
     {
       "name": "get_company_info",

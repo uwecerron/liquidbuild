@@ -185,3 +185,7 @@ pre.code{background:var(--ink);color:#EDEAE3;padding:24px;border-radius:8px;over
 .err-text{color:#F2A49E;margin:0}
 @media (max-width:1000px){.est-form{grid-template-columns:1fr 1fr}.estimator{padding:28px 22px}}
 @media (max-width:560px){.est-form{grid-template-columns:1fr}}
+
+/* legal */
+.legal{max-width:820px}.legal h1{font-size:clamp(48px,7vw,84px);margin-bottom:16px}
+.legal h2{font-size:22px;font-weight:600;margin:32px 0 8px}.legal ul{padding-left:20px}.legal li{margin:6px 0}
