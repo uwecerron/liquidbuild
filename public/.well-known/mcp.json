@@ -25,8 +25,12 @@
       "description": "Turn an idea into a grounded plan: permits, South Florida code issues (HVHZ, flood zones), phases, timeline, risks and questions to answer."
     },
     {
+      "name": "get_quote_options",
+      "description": "The same choices as our quote form: project types, starting points (price, plans or design), budget bands and timelines."
+    },
+    {
       "name": "request_quote",
-      "description": "Send your project to our team. We reply within one business day by phone, text or email."
+      "description": "Send your project to our team. We reply within one business day by phone, text or email. Links to plans and photos can be attached."
     }
   ],
   "contact": {

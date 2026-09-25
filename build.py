@@ -22,15 +22,23 @@ NAV = [
 ]
 
 PROJECT_TYPES = [
-    "Land / home development",
-    "Design-build",
-    "New custom home",
-    "Renovation / addition",
-    "Commercial build-out",
-    "School / education",
-    "Data center / industrial",
-    "Other",
+    ("Renovation / remodel", "Kitchen, bath, whole home"),
+    ("Addition / second story", "More room on the house you have"),
+    ("New custom home", "On your lot, from the ground up"),
+    ("Commercial build-out", "Restaurant, retail, office"),
+    ("Land / home development", "Lots to a full community"),
+    ("School / education", "Charter, private, campus"),
+    ("Data center / industrial", "Power-first sites and shells"),
+    ("Other", "Pool, windows, something else"),
 ]
+INTENTS = [
+    ("price", "I know what I want", "Price my project"),
+    ("plans", "I have plans or photos", "Upload drawings, a survey or pictures"),
+    ("design", "I have an idea", "Help me shape and design it"),
+]
+BUDGETS = ["Under $50k", "$50k to $150k", "$150k to $500k", "$500k to $2M", "$2M+", "Not sure yet"]
+TIMELINES = ["As soon as possible", "1 to 3 months", "3 to 6 months", "6 to 12 months", "Just planning"]
+IDEA_EXAMPLES = ["Add a second story with 2 bedrooms and a bath", "Turn my garage into an in-law suite", "Open the kitchen to the living room and add an island", "Build a 3,000 sq ft home on my lot in Davie", "Build out a 2,500 sq ft restaurant in Wynwood"]
 
 
 def logo(cls=""):
@@ -53,33 +61,95 @@ def header(active, over_photo):
 </header>"""
 
 
+def _chips(name, values, required=False):
+    return "".join(
+        f'<label class="chip"><input type="radio" name="{name}" value="{html.escape(v)}"{" required" if required and i == 0 else ""}><span>{html.escape(v)}</span></label>'
+        for i, v in enumerate(values))
+
+
 def quote_form(preset, headline="Let's <em>build.</em>", sub="Land, a lot or a lease: tell us what you have. We reply within one business day."):
-    opts = "".join(
-        f'<option{" selected" if t == preset else ""}>{html.escape(t)}</option>' for t in PROJECT_TYPES
-    )
+    """Four short steps: what, where you're starting from, details (upload / idea / scope), contact.
+    Without JavaScript every step shows at once and it posts like a normal form."""
+    intent_preset = "design" if preset == "Design-build" else ""
+    types = "".join(
+        f'<label class="qcard"><input type="radio" name="project" value="{html.escape(t)}"{" checked" if t == preset else ""}{" required" if i == 0 else ""}>'
+        f'<span><b>{html.escape(t)}</b><small>{html.escape(h)}</small></span></label>'
+        for i, (t, h) in enumerate(PROJECT_TYPES))
+    intents = "".join(
+        f'<label class="qcard"><input type="radio" name="intent" value="{k}"{" checked" if k == intent_preset else ""}{" required" if i == 0 else ""}>'
+        f'<span><b>{html.escape(t)}</b><small>{html.escape(h)}</small></span></label>'
+        for i, (k, t, h) in enumerate(INTENTS))
+    examples = "".join(f'<button type="button" class="ex" data-example>{html.escape(e)}</button>' for e in IDEA_EXAMPLES)
     return f"""
 <section id="quote" class="quote wrap grid">
   <div class="quote-copy">
     <h2 class="display">{headline}</h2>
     <p class="muted lead">{sub}</p>
+    <ol class="next-steps"><li>Tell us what you're building. Takes about a minute.</li><li>Get a text back right away.</li><li>We call within one business day to set a site visit or a call.</li></ol>
     <p class="contact-lines"><a href="tel:{PHONE_TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a><br><span class="muted">{AREA}</span></p>
   </div>
-  <form class="quote-form" action="/api/quote" method="post" data-quote>
-    <div class="row2">
+  <form class="quote-form qf" action="/api/quote" method="post" data-quote novalidate>
+    <div class="qf-top" hidden><div class="qf-meta"><span class="qf-count" aria-live="polite">Step 1 of 4</span><span class="qf-picked" hidden></span></div><div class="qf-bar"><i></i></div></div>
+
+    <fieldset class="qf-step" data-step="1">
+      <legend>What are we building?</legend>
+      <div class="qcards">{types}</div>
+      <div class="qf-nav"><button type="button" class="btn dark" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="qf-step" data-step="2">
+      <legend>Where are you starting from?</legend>
+      <div class="qcards one">{intents}</div>
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="button" class="btn dark" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="qf-step" data-step="3">
+      <legend>Tell us about it</legend>
+      <div class="qf-when" data-when="plans">
+        <div class="drop" data-drop tabindex="0" role="button" aria-label="Add files">
+          <input type="file" data-file multiple accept="image/*,.heic,.pdf,.dwg,.dxf" hidden>
+          <b>Drop plans, a survey or photos here</b>
+          <span class="muted small">or tap to choose. PDF, JPG, PNG, HEIC, DWG. Up to 50 MB each.</span>
+        </div>
+        <ul class="files" data-files></ul>
+        <p class="muted small" data-noupload hidden>Uploads aren't turned on yet. Send your request, then text the files to <a href="sms:{PHONE_TEL}">{PHONE}</a> or email <a href="mailto:{EMAIL}">{EMAIL}</a>.</p>
+      </div>
+      <div class="qf-when" data-when="design">
+        <label>Describe the idea<textarea name="idea" rows="3" placeholder="In your own words. What you want, what you have now, what matters most."></textarea></label>
+        <div class="examples"><span class="muted small">Need a start? Tap one:</span>{examples}</div>
+        <button type="button" class="btn line" data-shape>Shape my idea</button>
+        <div class="plan" data-plan aria-live="polite" hidden></div>
+      </div>
+      <div class="qf-when" data-when="price">
+        <label>Size, if you know it<input name="size" type="text" inputmode="numeric" placeholder="Square feet, lots or megawatts"></label>
+      </div>
+      <label>Where is the project?<input name="location" type="text" placeholder="City or address" autocomplete="street-address"></label>
+      <div class="field"><span class="flabel">Budget</span><div class="chips">{_chips("budget", BUDGETS)}</div></div>
+      <div class="field"><span class="flabel">When do you want to start?</span><div class="chips">{_chips("timeline", TIMELINES)}</div></div>
+      <label>Anything else? <span class="muted">(optional)</span><textarea name="details" rows="2" placeholder="Links, permits you have, deadlines, questions."></textarea></label>
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="button" class="btn dark" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="qf-step" data-step="4">
+      <legend>Where should we send it?</legend>
       <label>Name<input name="name" type="text" autocomplete="name" required></label>
-      <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
-    </div>
-    <label>Email<input name="email" type="email" autocomplete="email" required></label>
-    <div class="row2">
-      <label>Project<select name="project">{opts}</select></label>
-      <label>Location<input name="location" type="text" placeholder="City or address"></label>
-    </div>
-    <label>Details<textarea name="details" rows="3" placeholder="Size, budget, timeline. Whatever you know."></textarea></label>
-    <label class="consent"><input type="checkbox" name="sms_consent" value="yes" checked> Text me about this request. Msg &amp; data rates may apply; reply STOP to opt out.</label>
-    <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
-    <input type="hidden" name="page" value="">
-    <button type="submit" class="btn dark">Request a quote</button>
-    <p class="form-status" role="status" aria-live="polite"></p>
+      <div class="row2">
+        <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+        <label>Email <span class="muted">(optional)</span><input name="email" type="email" autocomplete="email"></label>
+      </div>
+      <div class="field"><span class="flabel">Best way to reach you</span><div class="chips">
+        <label class="chip"><input type="radio" name="contact_pref" value="text" checked><span>Text</span></label>
+        <label class="chip"><input type="radio" name="contact_pref" value="call"><span>Call</span></label>
+        <label class="chip"><input type="radio" name="contact_pref" value="email"><span>Email</span></label></div></div>
+      <label class="consent"><input type="checkbox" name="sms_consent" value="yes" checked> Text me about this request. Msg &amp; data rates may apply; reply STOP to opt out.</label>
+      <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
+      <input type="hidden" name="page" value="">
+      <input type="hidden" name="files" value="">
+      <input type="hidden" name="plan" value="">
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="submit" class="btn dark">Send my request</button></div>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </fieldset>
+    <div class="qf-done" data-done hidden tabindex="-1"></div>
   </form>
 </section>"""
 
@@ -385,7 +455,7 @@ pages["index.html"] = page(
     + stats([("300+", "homes &amp; condo units developed"), ("1950", "Shores Development founded"), ("Land → Keys", "sitework, vertical, finishes"), ("AI-powered", "estimating, follow-up and permits")])
     + AI_SECTION + ESTIMATOR + SECTORS + COMMUNITIES + INSIDE + CUSTOM_HOMES + COMMERCIAL_GRID
     + faq_section(GENERAL_FAQS)
-    + quote_form("Land / home development"),
+    + quote_form(""),
     alternates=[("en", "/"), ("es", "/es"), ("x-default", "/")], preload="dev-aerial.jpg",
 )
 
@@ -730,7 +800,8 @@ AGENT_TOOLS = [
     ("list_projects", "Past projects with type, location and scope."),
     ("get_ballpark_estimate", "Rough cost range for a project type, size, finish level and location. Not a bid."),
     ("ground_project_idea", "Turn an idea into a grounded plan: permits, South Florida code issues (HVHZ, flood zones), phases, timeline, risks and questions to answer."),
-    ("request_quote", "Send your project to our team. We reply within one business day by phone, text or email."),
+    ("get_quote_options", "The same choices as our quote form: project types, starting points (price, plans or design), budget bands and timelines."),
+    ("request_quote", "Send your project to our team. We reply within one business day by phone, text or email. Links to plans and photos can be attached."),
 ]
 tools_html = "".join(f'<div class="line"><b><code>{n}</code></b><span class="muted">{d}</span></div>' for n, d in AGENT_TOOLS)
 pages["agents.html"] = page(

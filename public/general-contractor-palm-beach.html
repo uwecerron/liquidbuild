@@ -78,24 +78,71 @@
   <div class="quote-copy">
     <h2 class="display">Building in<br><em>Palm Beach?</em></h2>
     <p class="muted lead">Land, a lot or a lease: tell us what you have. We reply within one business day.</p>
+    <ol class="next-steps"><li>Tell us what you're building. Takes about a minute.</li><li>Get a text back right away.</li><li>We call within one business day to set a site visit or a call.</li></ol>
     <p class="contact-lines"><a href="tel:+13058335025">305-833-5025</a><br><a href="mailto:uwecerron@gmail.com">uwecerron@gmail.com</a><br><span class="muted">Fort Lauderdale · Miami · Palm Beach</span></p>
   </div>
-  <form class="quote-form" action="/api/quote" method="post" data-quote>
-    <div class="row2">
+  <form class="quote-form qf" action="/api/quote" method="post" data-quote novalidate>
+    <div class="qf-top" hidden><div class="qf-meta"><span class="qf-count" aria-live="polite">Step 1 of 4</span><span class="qf-picked" hidden></span></div><div class="qf-bar"><i></i></div></div>
+
+    <fieldset class="qf-step" data-step="1">
+      <legend>What are we building?</legend>
+      <div class="qcards"><label class="qcard"><input type="radio" name="project" value="Renovation / remodel" required><span><b>Renovation / remodel</b><small>Kitchen, bath, whole home</small></span></label><label class="qcard"><input type="radio" name="project" value="Addition / second story"><span><b>Addition / second story</b><small>More room on the house you have</small></span></label><label class="qcard"><input type="radio" name="project" value="New custom home" checked><span><b>New custom home</b><small>On your lot, from the ground up</small></span></label><label class="qcard"><input type="radio" name="project" value="Commercial build-out"><span><b>Commercial build-out</b><small>Restaurant, retail, office</small></span></label><label class="qcard"><input type="radio" name="project" value="Land / home development"><span><b>Land / home development</b><small>Lots to a full community</small></span></label><label class="qcard"><input type="radio" name="project" value="School / education"><span><b>School / education</b><small>Charter, private, campus</small></span></label><label class="qcard"><input type="radio" name="project" value="Data center / industrial"><span><b>Data center / industrial</b><small>Power-first sites and shells</small></span></label><label class="qcard"><input type="radio" name="project" value="Other"><span><b>Other</b><small>Pool, windows, something else</small></span></label></div>
+      <div class="qf-nav"><button type="button" class="btn dark" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="qf-step" data-step="2">
+      <legend>Where are you starting from?</legend>
+      <div class="qcards one"><label class="qcard"><input type="radio" name="intent" value="price" required><span><b>I know what I want</b><small>Price my project</small></span></label><label class="qcard"><input type="radio" name="intent" value="plans"><span><b>I have plans or photos</b><small>Upload drawings, a survey or pictures</small></span></label><label class="qcard"><input type="radio" name="intent" value="design"><span><b>I have an idea</b><small>Help me shape and design it</small></span></label></div>
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="button" class="btn dark" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="qf-step" data-step="3">
+      <legend>Tell us about it</legend>
+      <div class="qf-when" data-when="plans">
+        <div class="drop" data-drop tabindex="0" role="button" aria-label="Add files">
+          <input type="file" data-file multiple accept="image/*,.heic,.pdf,.dwg,.dxf" hidden>
+          <b>Drop plans, a survey or photos here</b>
+          <span class="muted small">or tap to choose. PDF, JPG, PNG, HEIC, DWG. Up to 50 MB each.</span>
+        </div>
+        <ul class="files" data-files></ul>
+        <p class="muted small" data-noupload hidden>Uploads aren't turned on yet. Send your request, then text the files to <a href="sms:+13058335025">305-833-5025</a> or email <a href="mailto:uwecerron@gmail.com">uwecerron@gmail.com</a>.</p>
+      </div>
+      <div class="qf-when" data-when="design">
+        <label>Describe the idea<textarea name="idea" rows="3" placeholder="In your own words. What you want, what you have now, what matters most."></textarea></label>
+        <div class="examples"><span class="muted small">Need a start? Tap one:</span><button type="button" class="ex" data-example>Add a second story with 2 bedrooms and a bath</button><button type="button" class="ex" data-example>Turn my garage into an in-law suite</button><button type="button" class="ex" data-example>Open the kitchen to the living room and add an island</button><button type="button" class="ex" data-example>Build a 3,000 sq ft home on my lot in Davie</button><button type="button" class="ex" data-example>Build out a 2,500 sq ft restaurant in Wynwood</button></div>
+        <button type="button" class="btn line" data-shape>Shape my idea</button>
+        <div class="plan" data-plan aria-live="polite" hidden></div>
+      </div>
+      <div class="qf-when" data-when="price">
+        <label>Size, if you know it<input name="size" type="text" inputmode="numeric" placeholder="Square feet, lots or megawatts"></label>
+      </div>
+      <label>Where is the project?<input name="location" type="text" placeholder="City or address" autocomplete="street-address"></label>
+      <div class="field"><span class="flabel">Budget</span><div class="chips"><label class="chip"><input type="radio" name="budget" value="Under $50k"><span>Under $50k</span></label><label class="chip"><input type="radio" name="budget" value="$50k to $150k"><span>$50k to $150k</span></label><label class="chip"><input type="radio" name="budget" value="$150k to $500k"><span>$150k to $500k</span></label><label class="chip"><input type="radio" name="budget" value="$500k to $2M"><span>$500k to $2M</span></label><label class="chip"><input type="radio" name="budget" value="$2M+"><span>$2M+</span></label><label class="chip"><input type="radio" name="budget" value="Not sure yet"><span>Not sure yet</span></label></div></div>
+      <div class="field"><span class="flabel">When do you want to start?</span><div class="chips"><label class="chip"><input type="radio" name="timeline" value="As soon as possible"><span>As soon as possible</span></label><label class="chip"><input type="radio" name="timeline" value="1 to 3 months"><span>1 to 3 months</span></label><label class="chip"><input type="radio" name="timeline" value="3 to 6 months"><span>3 to 6 months</span></label><label class="chip"><input type="radio" name="timeline" value="6 to 12 months"><span>6 to 12 months</span></label><label class="chip"><input type="radio" name="timeline" value="Just planning"><span>Just planning</span></label></div></div>
+      <label>Anything else? <span class="muted">(optional)</span><textarea name="details" rows="2" placeholder="Links, permits you have, deadlines, questions."></textarea></label>
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="button" class="btn dark" data-next>Next</button></div>
+    </fieldset>
+
+    <fieldset class="qf-step" data-step="4">
+      <legend>Where should we send it?</legend>
       <label>Name<input name="name" type="text" autocomplete="name" required></label>
-      <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
-    </div>
-    <label>Email<input name="email" type="email" autocomplete="email" required></label>
-    <div class="row2">
-      <label>Project<select name="project"><option>Land / home development</option><option>Design-build</option><option selected>New custom home</option><option>Renovation / addition</option><option>Commercial build-out</option><option>School / education</option><option>Data center / industrial</option><option>Other</option></select></label>
-      <label>Location<input name="location" type="text" placeholder="City or address"></label>
-    </div>
-    <label>Details<textarea name="details" rows="3" placeholder="Size, budget, timeline. Whatever you know."></textarea></label>
-    <label class="consent"><input type="checkbox" name="sms_consent" value="yes" checked> Text me about this request. Msg &amp; data rates may apply; reply STOP to opt out.</label>
-    <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
-    <input type="hidden" name="page" value="">
-    <button type="submit" class="btn dark">Request a quote</button>
-    <p class="form-status" role="status" aria-live="polite"></p>
+      <div class="row2">
+        <label>Phone<input name="phone" type="tel" autocomplete="tel" required></label>
+        <label>Email <span class="muted">(optional)</span><input name="email" type="email" autocomplete="email"></label>
+      </div>
+      <div class="field"><span class="flabel">Best way to reach you</span><div class="chips">
+        <label class="chip"><input type="radio" name="contact_pref" value="text" checked><span>Text</span></label>
+        <label class="chip"><input type="radio" name="contact_pref" value="call"><span>Call</span></label>
+        <label class="chip"><input type="radio" name="contact_pref" value="email"><span>Email</span></label></div></div>
+      <label class="consent"><input type="checkbox" name="sms_consent" value="yes" checked> Text me about this request. Msg &amp; data rates may apply; reply STOP to opt out.</label>
+      <label class="hp" aria-hidden="true">Company website<input name="company_website" type="text" tabindex="-1" autocomplete="off"></label>
+      <input type="hidden" name="page" value="">
+      <input type="hidden" name="files" value="">
+      <input type="hidden" name="plan" value="">
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="submit" class="btn dark">Send my request</button></div>
+      <p class="form-status" role="status" aria-live="polite"></p>
+    </fieldset>
+    <div class="qf-done" data-done hidden tabindex="-1"></div>
   </form>
 </section>
 </main>

@@ -9,9 +9,13 @@
     "indexnow": "node scripts/indexnow.js"
   },
   "dependencies": {
+    "@vercel/blob": "^2.8.0",
     "postgres": "^3.4.5"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
   }
 }

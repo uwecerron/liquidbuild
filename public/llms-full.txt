@@ -28,7 +28,7 @@ Replies to quote requests within one business day.
 
 ## For AI agents
 - MCP server (Streamable HTTP, no auth): https://liquid-build.com/api/mcp
-- Tools: get_company_info, list_projects, get_ballpark_estimate, ground_project_idea, request_quote
+- Tools: get_company_info, list_projects, get_ballpark_estimate, ground_project_idea, get_quote_options, request_quote
 - Human-readable guide: https://liquid-build.com/agents
 - Estimates from the MCP tools are ballpark planning ranges, not bids.
 

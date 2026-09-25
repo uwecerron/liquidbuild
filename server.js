@@ -40,6 +40,14 @@ http.createServer(async (req, res) => {
       const data = req.method === 'POST' ? parse(await readBody(req), req.headers['content-type']) : Object.fromEntries(url.searchParams);
       res.writeHead(200, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify(ballpark(data)));
     }
+    if (['/api/ground', '/api/upload', '/api/file'].includes(p)) {
+      req.body = req.method === 'POST' ? parse(await readBody(req), req.headers['content-type']) : {};
+      req.query = Object.fromEntries(url.searchParams);
+      res.status = (c) => { res.statusCode = c; return res; };
+      res.json = (o) => { res.setHeader('Content-Type', 'application/json'); res.end(JSON.stringify(o)); };
+      res.send = (t) => res.end(String(t));
+      return require('./api' + p.slice(4) + '.js')(req, res);
+    }
     if (p === '/api/config') { res.writeHead(200, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify(config())); }
     if (p === '/api/mcp' || p === '/mcp') {
       const raw = req.method === 'POST' ? await readBody(req) : '';

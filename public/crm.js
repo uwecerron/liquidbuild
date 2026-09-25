@@ -204,7 +204,9 @@
           <label>Deal value<input id="f-value" inputmode="decimal" value="${lead.value ? Number(lead.value) : ''}" placeholder="$"></label>
           <label>Next follow-up<input id="f-follow" type="date" value="${dateOnly(lead.next_follow_up)}"></label>
         </div>
+        <div class="chip-row">${[lead.intent && ({ price: 'Wants a price', plans: 'Sent plans or photos', design: 'Wants design help' }[lead.intent] || lead.intent), lead.budget, lead.timeline, lead.contact_pref && 'Prefers ' + lead.contact_pref].filter(Boolean).map((t) => `<span class="chip">${esc(t)}</span>`).join(' ')}</div>
         ${lead.details ? `<div><h3 style="margin-bottom:6px">Request</h3><p class="details">${esc(lead.details)}</p></div>` : ''}
+        ${filesHtml(lead.files)}
         ${lead.sms_opt_out ? '<div class="chip warn" style="align-self:flex-start">Opted out of texts</div>' : lead.sms_consent ? '<div class="chip ok" style="align-self:flex-start">OK to text</div>' : ''}
       </div>
 
@@ -284,7 +286,16 @@
     if (lead.unread) api('POST', `leads/${id}/read`, {}).then(() => refresh(true)).catch(() => {});
   }
 
-  function actHtml(a) {
+  function filesHtml(files) {
+  if (!Array.isArray(files) || !files.length) return '';
+  const link = (f) => (f.stored === false ? f.url : '/api/file?u=' + encodeURIComponent(f.url));
+  const isImg = (f) => /^image\/(jpeg|png|webp|gif)/.test(f.type || '') || /\.(jpe?g|png|webp|gif)$/i.test(f.name || '');
+  return `<div><h3 style="margin-bottom:6px">Files (${files.length})</h3><div class="lead-files">${files.map((f) => isImg(f)
+    ? `<a href="${esc(link(f))}" target="_blank" rel="noopener"><img src="${esc(link(f))}" alt="${esc(f.name)}" loading="lazy"></a>`
+    : `<a class="doc" href="${esc(link(f))}" target="_blank" rel="noopener"><b>${esc((f.name.split('.').pop() || 'file').toUpperCase())}</b>${esc(f.name)}</a>`).join('')}</div></div>`;
+}
+
+function actHtml(a) {
     const who = a.user_name ? esc(a.user_name.split(' ')[0]) + ' · ' : '';
     const media = (a.meta && a.meta.media || []).map((u) => `<br><a href="${esc(u)}" target="_blank" rel="noopener">Photo</a>`).join('');
     switch (a.type) {

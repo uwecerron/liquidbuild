@@ -50,19 +50,28 @@ If someone texts STOP, the CRM blocks further texts to them.
 Until Resend is set up, new-lead alerts go to `uwecerron@gmail.com` through FormSubmit. The first alert asks you to click
 "Activate". Do it once. Change the inbox with `LEAD_EMAIL`.
 
-## 5. Review the estimate ranges
+## 5. Turn on file uploads (plans and photos)
+
+In Vercel, go to **Storage**, then **Create Database**, then **Blob**. Choose **Private** and connect it to this project.
+Vercel adds `BLOB_READ_WRITE_TOKEN` for you. Redeploy. The quote form's "I have plans or photos" step starts accepting files
+(PDF, JPG, PNG, HEIC, DWG, up to 50 MB each). Files open from the lead in the CRM and are never public.
+If you created a public store instead, add `BLOB_ACCESS=public`.
+
+After changing the upload library, rebuild the browser file: `npx esbuild scripts/blob-entry.mjs --bundle --minify --format=iife --outfile=public/vendor/blob-upload.js`.
+
+## 6. Review the estimate ranges
 
 `data/estimating.json` holds the ballpark price ranges used by the website and the MCP server.
 **These are starting numbers. Replace them with your real pricing**, then fill in `reviewedBy` and `reviewedOn`.
 
-## 6. Get found
+## 7. Get found
 
 - Google Search Console and Bing Webmaster Tools: add the site and submit `https://<your-site>/sitemap.xml`.
 - Create a Google Business Profile with the same name, phone and service area.
 - `robots.txt` welcomes GPTBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers. `/crm` stays private.
 - When you get a custom domain, set `SITE_URL`, change `url` in `data/company.json`, then run `python3 build.py`.
 
-## 7. License number
+## 8. License number
 
 Once the license is qualified for Liquid Build LLC, add `LICENSE_NUMBER` in Vercel. The footer shows it automatically.
 
