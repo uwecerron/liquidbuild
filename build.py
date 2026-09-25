@@ -200,12 +200,24 @@ COMMUNITIES = f"""
 
 COMMERCIAL_GRID = f"""
 <section class="wrap section">
-  <h2 class="display">Commercial <em>build-outs</em></h2>
-  <div class="grid4">
-    {fig('chilis-fiu.jpg',"Finished circular bar inside a Chili's restaurant","Chili's","FIU, Miami")}
-    {fig('starbucks-buildout.jpg','Crew installing millwork at a Starbucks counter','Starbucks','Miami')}
+  <h2 class="display">Commercial &amp; <em>institutional</em></h2>
+  <div class="grid3">
+    {fig('albizu-university.jpg','Carlos Albizu University campus building in Miami','Carlos Albizu University','Second-floor remodel · Miami')}
+    {fig('chilis-fiu.jpg',"Finished circular bar inside a Chili's restaurant","Chili's","FIU Graham Center, Miami")}
+    {fig('starbucks-buildout.jpg','Crew installing millwork at a Starbucks counter','Starbucks','Build-out · Miami')}
     {fig('restaurant-counter.jpg','Finished quick-service restaurant counter with menu boards','Quick-service restaurant','Build-out')}
-    {fig('oasis-key-biscayne.jpg','Renovated Oasis storefront in Key Biscayne','Oasis','Key Biscayne')}
+    {fig('oasis-key-biscayne.jpg','Renovated Oasis storefront in Key Biscayne','Oasis','Retail renovation · Key Biscayne')}
+    {fig('interior-buildout.jpg','Commercial interior under construction with new ceiling lighting','Commercial interior','Tenant build-out')}
+  </div>
+</section>"""
+
+CUSTOM_HOMES = f"""
+<section class="wrap section">
+  <h2 class="display">Custom <em>homes</em></h2>
+  <div class="grid3">
+    {fig('home-key-biscayne.jpg','Two-story custom home with white balconies in Key Biscayne','Custom residence','New construction · Key Biscayne',360)}
+    {fig('home-finished.jpg','Renovated single-story home with palm trees and new landscaping','Residence · Miami','Full renovation',360)}
+    {fig('pool-aerial.jpg','Aerial view of a new pool and spa with paver deck','Pool &amp; spa','New construction',360)}
   </div>
 </section>"""
 
@@ -230,7 +242,7 @@ pages["index.html"] = page(
     hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "From raw land<br><em>to keys in hand.</em>",
          "We develop and build communities, custom homes, commercial space, schools and data centers across South Florida.", tall=True)
     + stats([("300+", "homes &amp; condo units developed"), ("100", "homes across three communities"), ("Land → Keys", "sitework, vertical, finishes"), ("GC", "licensed general contracting")])
-    + SECTORS + COMMUNITIES + COMMERCIAL_GRID
+    + SECTORS + COMMUNITIES + CUSTOM_HOMES + COMMERCIAL_GRID
     + quote_form("Land / home development"),
 )
 
@@ -272,6 +284,7 @@ pages["design-build.html"] = page(
     ])
     + list_block("We design-build", [("Custom homes", "New builds, additions, pools"), ("Commercial", "Restaurant &amp; retail"), ("Schools", "Classrooms, campuses"), ("Industrial", "Warehouses, data centers")],
                  [("new-home-pool.jpg", "New home under construction with pool forms"), ("team-on-site.jpg", "Project team reviewing plans on site")])
+    + CUSTOM_HOMES
     + quote_form("Design-build", "Start with<br><em>a sketch.</em>"),
     "design-build.html",
 )
@@ -300,7 +313,18 @@ pages["schools.html"] = page(
         ("Higher education", "Floor remodels, labs, food service and student spaces."),
         ("Summer renovations", "Work phased to finish before the first bell."),
         ("Safety &amp; hardening", "Impact windows, secure entries, fire and life safety."),
-    ], "Recent: second-floor remodel at Carlos Albizu University; Chili's at FIU's Graham Center.")
+    ])
+    + f"""
+<section class="wrap section">
+  <h2 class="display">Recent <em>campus work</em></h2>
+  <div class="mosaic">
+    <div class="m-big">{fig('albizu-university.jpg','Carlos Albizu University campus building in Miami','Carlos Albizu University · Miami','Second-floor remodel',460)}</div>
+    <div class="m-stack">
+      {fig('chilis-fiu.jpg',"Finished circular bar inside a Chili's at FIU's Graham Center","FIU Graham Center · Miami","Chili's build-out",220)}
+      {fig('starbucks-buildout.jpg','Crew installing millwork at a Starbucks counter','Starbucks','Campus-style build-out',220)}
+    </div>
+  </div>
+</section>"""
     + steps("Built around the calendar", [
         ("Walkthrough", "We tour the campus and map what can't be disrupted."),
         ("Phase plan", "Work split into windows — nights, weekends, summers."),
