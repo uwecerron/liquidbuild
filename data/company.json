@@ -24,8 +24,8 @@
     "https://liquidpermit.com/"
   ],
   "track": [
-    "300+ homes and condo units developed by our team (Shores Development, Selenis Construction)",
-    "Single-family communities: Redland Ranches (57 homes), Toscana (24 homes), Las Palmas (19 units)",
+    "Shores Development, founded in 1950, a second-generation Miami-Dade home developer. 300+ homes and condo units developed by our team (Shores Development, Selenis Construction)",
+    "Single-family communities: Redland Ranches (57 homes on acre lots, Renoir and Van Gogh models), Toscana Estates (24 homes), Las Palmas (19 homes), Casa Bella (twin and single-family homes), Estate Mansions",
     "Commercial and institutional: Carlos Albizu University second-floor remodel, Chili's at FIU Graham Center, Starbucks, quick-service restaurants, Oasis in Key Biscayne",
     "AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly"
   ],
@@ -131,11 +131,11 @@
       "name": "Redland Ranches",
       "location": "Redland, Miami-Dade",
       "type": "Single-family community",
-      "detail": "57 homes",
-      "image": "/images/redland-ranches.jpg"
+      "detail": "57 homes on acre lots, pools standard",
+      "image": "/images/redland-renoir-home.jpg"
     },
     {
-      "name": "Toscana",
+      "name": "Toscana Estates",
       "location": "South Florida",
       "type": "Single-family community",
       "detail": "24 single-family homes",
@@ -145,8 +145,15 @@
       "name": "Las Palmas",
       "location": "South Florida",
       "type": "Residential",
-      "detail": "19 units",
-      "image": null
+      "detail": "19 homes",
+      "image": "/images/las-palmas.jpg"
+    },
+    {
+      "name": "Casa Bella",
+      "location": "SW 122nd Ave & SW 248th St, Miami",
+      "type": "Twin and single-family homes",
+      "detail": "Gardenia, Orchid and Hibiscus models",
+      "image": "/images/casabella.jpg"
     },
     {
       "name": "Villa Harbour",

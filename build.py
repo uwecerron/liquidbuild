@@ -262,18 +262,37 @@ def cards(title, items, note=""):
 
 COMMUNITIES = f"""
 <section class="wrap section">
-  <div class="section-head"><h2 class="display">Communities</h2><p class="muted">Developed by our team at Shores Development &amp; Selenis</p></div>
-  <div class="mosaic">
-    <div class="m-big">{fig('redland-ranches.jpg','New single-family homes rising on graded land at Redland Ranches','Redland Ranches · Redland','57 homes',520)}</div>
-    <div class="m-stack">
-      {fig('toscana.jpg','Rendering of a one-story Mediterranean-style Toscana home','Toscana','24 single-family homes',250)}
-      {fig('casabella.jpg','Rendering of a two-story Casabella home with tile roof','Casabella','Two-story model',250)}
-    </div>
+  <div class="section-head"><h2 class="display">Communities</h2><p class="muted">Built by our team at Shores Development, a Miami-Dade home developer since 1950</p></div>
+  <figure class="wide-fig"><img src="/images/redland-aerial.jpg" alt="Aerial view of Redland Ranches: large single-family homes on acre lots" loading="lazy"><figcaption><b>Redland Ranches from the air</b><span>57 homes on acre lots · Redland, Miami-Dade</span></figcaption></figure>
+  <div class="grid3 comm-grid">
+    {fig('redland-renoir-home.jpg','Finished Renoir model home at Redland Ranches with three-car garage','Redland Ranches','57 homes · pools standard',300)}
+    {fig('las-palmas.jpg','Finished single-story Las Palmas home with tile roof and wood fence','Las Palmas','19 homes · sold out',300)}
+    {fig('toscana.jpg','Rendering of a one-story Toscana Estates home with a three-car garage','Toscana Estates','24 homes · sold out',300)}
   </div>
-  <div class="triple">
-    <div class="line"><b>Las Palmas</b><span class="muted">19 units</span></div>
-    <div class="line"><b>Villa Harbour</b><span class="muted">Waterfront community renovation</span></div>
-    <div class="line"><b>Mid-rise</b><span class="muted">25-unit building</span></div>
+  <div class="models">
+    <h3>Models we built</h3>
+    <table>
+      <thead><tr><th>Community</th><th>Models</th><th>Size (A/C sq ft)</th><th>Bed / bath / garage</th></tr></thead>
+      <tbody>
+        <tr><td>Redland Ranches</td><td>Renoir, Van Gogh</td><td>2,901 to 3,606</td><td>5 to 6 / 3 to 4 / 3</td></tr>
+        <tr><td>Las Palmas</td><td>Sable Palm, Silver Palm, Royal Palm</td><td>2,400 to 3,606</td><td>4 to 6 / 3 to 4 / 2 or 3</td></tr>
+        <tr><td>Toscana Estates</td><td>Picasso, Renoir</td><td>2,400 to 2,701</td><td>4 to 5 / 3 / 2 or 3</td></tr>
+        <tr><td>Casa Bella</td><td>Gardenia, Orchid, Hibiscus (twin and single-family homes)</td><td>1,708 to 2,766</td><td>3 to 4 / 2.5 to 3 / 1 or 2</td></tr>
+      </tbody>
+    </table>
+    <p class="muted small">Also: Estate Mansions and the Villa Harbour waterfront renovation. Commercial: a 5-acre mixed-use site in Palmetto Bay.</p>
+  </div>
+</section>"""
+
+INSIDE = f"""
+<section class="wrap section">
+  <div class="section-head"><h2 class="display">Inside a <em>Redland Ranches</em> home</h2><p class="muted">Renoir model: 5 bedrooms, 3 baths, 3-car garage, pool</p></div>
+  <div class="inside">
+    <img class="in-big" src="/images/redland-pool-waterfall.jpg" alt="Backyard pool with waterfall spillway and palm trees" loading="lazy">
+    <img src="/images/redland-kitchen.jpg" alt="Open kitchen with dark cabinets, white quartz island and mosaic backsplash" loading="lazy">
+    <img src="/images/redland-living.jpg" alt="Open living room with tile floors and glass doors to the backyard" loading="lazy">
+    <img src="/images/redland-bath.jpg" alt="Primary bath with freestanding tub and glass shower" loading="lazy">
+    <img src="/images/redland-lanai.jpg" alt="Covered lanai looking out to the pool" loading="lazy">
   </div>
 </section>"""
 
@@ -353,8 +372,8 @@ pages["index.html"] = page(
     "AI-powered general contractor and developer in South Florida: single-family communities, custom homes, commercial build-outs, schools and data centers. 300+ homes and units developed. Call 305-833-5025.",
     hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "From raw land<br><em>to keys in hand.</em>",
          "The AI-powered general contractor for South Florida. We develop and build communities, custom homes, commercial space, schools and data centers.", tall=True)
-    + stats([("300+", "homes &amp; condo units developed"), ("100", "homes across three communities"), ("Land → Keys", "sitework, vertical, finishes"), ("AI-powered", "estimating, follow-up and permits")])
-    + AI_SECTION + ESTIMATOR + SECTORS + COMMUNITIES + CUSTOM_HOMES + COMMERCIAL_GRID
+    + stats([("300+", "homes &amp; condo units developed"), ("1950", "Shores Development founded"), ("Land → Keys", "sitework, vertical, finishes"), ("AI-powered", "estimating, follow-up and permits")])
+    + AI_SECTION + ESTIMATOR + SECTORS + COMMUNITIES + INSIDE + CUSTOM_HOMES + COMMERCIAL_GRID
     + faq_section(GENERAL_FAQS)
     + quote_form("Land / home development"),
 )
@@ -363,7 +382,7 @@ pages["home-development.html"] = page(
     "home-development.html",
     "Home Development & Single-Family Communities in South Florida | Liquid Build",
     "Single-family community development in Miami-Dade, Broward and Palm Beach: land feasibility, entitlements, sitework, model homes and production building. Redland Ranches, Toscana, Las Palmas.",
-    hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "Home<br><em>development.</em>",
+    hero("redland-renoir-home.jpg", "Finished Renoir model home at Redland Ranches", "Home<br><em>development.</em>",
          "Raw land in, finished streets out. We take single-family communities from entitlements to closings.")
     + stats([("57", "homes · Redland Ranches"), ("24", "homes · Toscana"), ("19", "units · Las Palmas"), ("300+", "units developed by our team")])
     + steps("Land to keys", [
@@ -373,6 +392,7 @@ pages["home-development.html"] = page(
         ("Vertical", "Model homes first, then production building lot by lot."),
     ])
     + COMMUNITIES
+    + INSIDE
     + faq_section(SERVICES["home-development"]["faqs"])
     + quote_form("Land / home development", "Have land?<br><em>Let's plan it.</em>"),
     "home-development.html",

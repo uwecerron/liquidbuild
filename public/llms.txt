@@ -13,8 +13,8 @@ Replies to quote requests within one business day.
 - [Data Centers & Industrial](https://liquid-build.com/data-centers): Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
 
 ## Track record
-- 300+ homes and condo units developed by our team (Shores Development, Selenis Construction)
-- Single-family communities: Redland Ranches (57 homes), Toscana (24 homes), Las Palmas (19 units)
+- Shores Development, founded in 1950, a second-generation Miami-Dade home developer. 300+ homes and condo units developed by our team (Shores Development, Selenis Construction)
+- Single-family communities: Redland Ranches (57 homes on acre lots, Renoir and Van Gogh models), Toscana Estates (24 homes), Las Palmas (19 homes), Casa Bella (twin and single-family homes), Estate Mansions
 - Commercial and institutional: Carlos Albizu University second-floor remodel, Chili's at FIU Graham Center, Starbucks, quick-service restaurants, Oasis in Key Biscayne
 - AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly
 
