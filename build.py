@@ -349,7 +349,7 @@ pages = {}
 
 pages["index.html"] = page(
     "index.html",
-    "Liquid Build | AI-Powered General Contractor in Miami, Fort Lauderdale & Palm Beach",
+    "Liquid Build | South Florida's AI-Powered Builder & Developer",
     "AI-powered general contractor and developer in South Florida: single-family communities, custom homes, commercial build-outs, schools and data centers. 300+ homes and units developed. Call 305-833-5025.",
     hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "From raw land<br><em>to keys in hand.</em>",
          "The AI-powered general contractor for South Florida. We develop and build communities, custom homes, commercial space, schools and data centers.", tall=True)

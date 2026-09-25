@@ -6,11 +6,11 @@ Contact: 305-833-5025 (call or text) · uwecerron@gmail.com · Service area: Mia
 Replies to quote requests within one business day.
 
 ## Services
-- [Home Development](https://liquidbuild.vercel.app/home-development): Single-family communities from land and entitlements to sitework, model homes and production building.
-- [Design-Build](https://liquidbuild.vercel.app/design-build): One contract and one team from first sketch to final inspection, with the budget set during design.
-- [Commercial Build-Outs](https://liquidbuild.vercel.app/commercial): Restaurant, retail and office build-outs built to brand spec and opening date.
-- [Schools & Campuses](https://liquidbuild.vercel.app/schools): Charter, private and higher-education construction phased around the school calendar.
-- [Data Centers & Industrial](https://liquidbuild.vercel.app/data-centers): Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
+- [Home Development](https://liquid-build.com/home-development): Single-family communities from land and entitlements to sitework, model homes and production building.
+- [Design-Build](https://liquid-build.com/design-build): One contract and one team from first sketch to final inspection, with the budget set during design.
+- [Commercial Build-Outs](https://liquid-build.com/commercial): Restaurant, retail and office build-outs built to brand spec and opening date.
+- [Schools & Campuses](https://liquid-build.com/schools): Charter, private and higher-education construction phased around the school calendar.
+- [Data Centers & Industrial](https://liquid-build.com/data-centers): Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
 
 ## Track record
 - 300+ homes and condo units developed by our team (Shores Development, Selenis Construction)
@@ -19,19 +19,19 @@ Replies to quote requests within one business day.
 - AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly
 
 ## For AI agents
-- MCP server (Streamable HTTP, no auth): https://liquidbuild.vercel.app/api/mcp
+- MCP server (Streamable HTTP, no auth): https://liquid-build.com/api/mcp
 - Tools: get_company_info, list_projects, get_ballpark_estimate, ground_project_idea, request_quote
-- Human-readable guide: https://liquidbuild.vercel.app/agents
+- Human-readable guide: https://liquid-build.com/agents
 - Estimates from the MCP tools are ballpark planning ranges, not bids.
 
 ## Optional
-- [Full details for LLMs](https://liquidbuild.vercel.app/llms-full.txt)
+- [Full details for LLMs](https://liquid-build.com/llms-full.txt)
 - [Liquid Permit: permits and approvals](https://liquidpermit.com/)
 - [Liquid Labor: robotics, automation and data center research](https://www.liquid-labor.com/)
 
 # Service details and FAQs
 
-## Home Development (https://liquidbuild.vercel.app/home-development)
+## Home Development (https://liquid-build.com/home-development)
 Single-family communities from land and entitlements to sitework, model homes and production building.
 
 **Do you develop land you don't own yet?**
@@ -43,7 +43,7 @@ Our team has developed 300+ homes and condo units in South Florida, including Re
 **Who handles permits and plats?**
 We coordinate plats, zoning and building permits with our sister company Liquid Permit.
 
-## Design-Build (https://liquidbuild.vercel.app/design-build)
+## Design-Build (https://liquid-build.com/design-build)
 One contract and one team from first sketch to final inspection, with the budget set during design.
 
 **What is design-build?**
@@ -55,7 +55,7 @@ It usually reduces surprises: the budget is checked during design instead of aft
 **What do you design-build?**
 Custom homes, additions, pools, restaurant and retail interiors, school renovations and industrial buildings.
 
-## Commercial Build-Outs (https://liquidbuild.vercel.app/commercial)
+## Commercial Build-Outs (https://liquid-build.com/commercial)
 Restaurant, retail and office build-outs built to brand spec and opening date.
 
 **Which brands have you built for?**
@@ -67,7 +67,7 @@ Yes. We phase work around operating hours for renovations of open restaurants an
 **Do you handle landlord and brand approvals?**
 Yes. We coordinate drawings, landlord work letters, brand standards and permits.
 
-## Schools & Campuses (https://liquidbuild.vercel.app/schools)
+## Schools & Campuses (https://liquid-build.com/schools)
 Charter, private and higher-education construction phased around the school calendar.
 
 **Can you finish over the summer?**
@@ -79,7 +79,7 @@ Recent campus work includes a second-floor remodel at Carlos Albizu University i
 **Do you build charter schools?**
 Yes: new buildings, conversions of existing buildings and additions for charter and private schools.
 
-## Data Centers & Industrial (https://liquidbuild.vercel.app/data-centers)
+## Data Centers & Industrial (https://liquid-build.com/data-centers)
 Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
 
 **What limits a data center schedule?**
@@ -114,4 +114,4 @@ Miami-Dade, Broward and Palm Beach counties. That covers Miami, Fort Lauderdale,
 Within one business day. Call or text 305-833-5025 for anything urgent.
 
 **Can my AI assistant get an estimate from you?**
-Yes. Agents can connect to our MCP server at https://liquidbuild.vercel.app/api/mcp for company info, ballpark estimates, project grounding and quote requests. See https://liquidbuild.vercel.app/agents.
+Yes. Agents can connect to our MCP server at https://liquid-build.com/api/mcp for company info, ballpark estimates, project grounding and quote requests. See https://liquid-build.com/agents.
