@@ -1,7 +1,7 @@
 // Quote forms: submit with fetch, show inline status. Falls back to a normal POST without JS.
 document.querySelectorAll('form[data-quote]').forEach((form) => {
   const page = form.querySelector('input[name="page"]');
-  if (page) page.value = location.pathname;
+  if (page) page.value = (location.pathname + location.search).slice(0, 300);
   const status = form.querySelector('.form-status');
   const btn = form.querySelector('button[type="submit"]');
   form.addEventListener('submit', async (e) => {
@@ -19,7 +19,7 @@ document.querySelectorAll('form[data-quote]').forEach((form) => {
       const out = await res.json().catch(() => ({}));
       if (!res.ok || !out.ok) throw new Error(out.error || 'Something went wrong.');
       form.reset();
-      if (page) page.value = location.pathname;
+      if (page) page.value = (location.pathname + location.search).slice(0, 300);
       status.className = 'form-status ok';
       status.textContent = 'Thanks, we got it. We reply within one business day.';
     } catch (err) {
