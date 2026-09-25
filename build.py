@@ -113,7 +113,7 @@ def page(filename, title, desc, body, active="", over_photo=True):
 {body}
 </main>
 {footer()}
-<script src="/app.js" defer></script>
+<script src="/site.js" defer></script>
 </body>
 </html>"""
 
