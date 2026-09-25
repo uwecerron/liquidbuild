@@ -1,0 +1,194 @@
+{
+  "name": "Liquid Build",
+  "legalName": "Liquid Build LLC",
+  "url": "https://liquidbuild.vercel.app",
+  "tagline": "The AI-powered general contractor for South Florida.",
+  "description": "Liquid Build is an AI-powered general contractor and developer in South Florida. We develop single-family communities and build custom homes, commercial build-outs, schools and data centers across Miami-Dade, Broward and Palm Beach counties. We use AI to answer faster, estimate faster and keep permits moving, and experienced builders run every job.",
+  "phone": "305-833-5025",
+  "phoneE164": "+13058335025",
+  "email": "uwecerron@gmail.com",
+  "areaServed": [
+    "Miami-Dade County, FL",
+    "Broward County, FL",
+    "Palm Beach County, FL",
+    "Miami",
+    "Fort Lauderdale",
+    "West Palm Beach",
+    "Key Biscayne",
+    "Homestead",
+    "Redland"
+  ],
+  "areaLine": "Fort Lauderdale · Miami · Palm Beach",
+  "sameAs": [
+    "https://www.liquid-labor.com/",
+    "https://liquidpermit.com/"
+  ],
+  "track": [
+    "300+ homes and condo units developed by our team (Shores Development, Selenis Construction)",
+    "Single-family communities: Redland Ranches (57 homes), Toscana (24 homes), Las Palmas (19 units)",
+    "Commercial and institutional: Carlos Albizu University second-floor remodel, Chili's at FIU Graham Center, Starbucks, quick-service restaurants, Oasis in Key Biscayne",
+    "AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly"
+  ],
+  "services": [
+    {
+      "slug": "home-development",
+      "name": "Home Development",
+      "summary": "Single-family communities from land and entitlements to sitework, model homes and production building.",
+      "faqs": [
+        [
+          "Do you develop land you don't own yet?",
+          "Yes. We run feasibility before you close: yield, sitework budget, utilities, flood zone and a realistic schedule, so you know what the land can become."
+        ],
+        [
+          "How many homes have you developed?",
+          "Our team has developed 300+ homes and condo units in South Florida, including Redland Ranches (57 homes), Toscana (24 homes) and Las Palmas (19 units)."
+        ],
+        [
+          "Who handles permits and plats?",
+          "We coordinate plats, zoning and building permits with our sister company Liquid Permit."
+        ]
+      ]
+    },
+    {
+      "slug": "design-build",
+      "name": "Design-Build",
+      "summary": "One contract and one team from first sketch to final inspection, with the budget set during design.",
+      "faqs": [
+        [
+          "What is design-build?",
+          "One contract covers design, engineering, permits and construction. The team drawing the project is the team building it, so price and schedule are set early."
+        ],
+        [
+          "Is design-build cheaper?",
+          "It usually reduces surprises: the budget is checked during design instead of after bids come back, and permits and site work can start while drawings finish."
+        ],
+        [
+          "What do you design-build?",
+          "Custom homes, additions, pools, restaurant and retail interiors, school renovations and industrial buildings."
+        ]
+      ]
+    },
+    {
+      "slug": "commercial",
+      "name": "Commercial Build-Outs",
+      "summary": "Restaurant, retail and office build-outs built to brand spec and opening date.",
+      "faqs": [
+        [
+          "Which brands have you built for?",
+          "Our team has built out locations for Chili's (FIU Graham Center), Starbucks and quick-service restaurants in Miami, plus retail renovations such as Oasis in Key Biscayne."
+        ],
+        [
+          "Can you work while a business stays open?",
+          "Yes. We phase work around operating hours for renovations of open restaurants and stores."
+        ],
+        [
+          "Do you handle landlord and brand approvals?",
+          "Yes. We coordinate drawings, landlord work letters, brand standards and permits."
+        ]
+      ]
+    },
+    {
+      "slug": "schools",
+      "name": "Schools & Campuses",
+      "summary": "Charter, private and higher-education construction phased around the school calendar.",
+      "faqs": [
+        [
+          "Can you finish over the summer?",
+          "Yes. We plan school work in windows (nights, weekends and summers) so rooms are inspected and ready before class."
+        ],
+        [
+          "What school work have you done?",
+          "Recent campus work includes a second-floor remodel at Carlos Albizu University in Miami and Chili's at FIU's Graham Center."
+        ],
+        [
+          "Do you build charter schools?",
+          "Yes: new buildings, conversions of existing buildings and additions for charter and private schools."
+        ]
+      ]
+    },
+    {
+      "slug": "data-centers",
+      "name": "Data Centers & Industrial",
+      "summary": "Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.",
+      "faqs": [
+        [
+          "What limits a data center schedule?",
+          "Usually power: utility capacity, interconnection timelines and long-lead electrical equipment. We screen sites by available megawatts and time to energize before design."
+        ],
+        [
+          "What part of a data center do you build?",
+          "Site and power diligence, sitework and pads, shell and core, and coordination of switchgear, generator yards and cooling plant with your engineers."
+        ],
+        [
+          "Do you build smaller edge sites?",
+          "Yes, including prefabricated modules and small edge facilities."
+        ]
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Redland Ranches",
+      "location": "Redland, Miami-Dade",
+      "type": "Single-family community",
+      "detail": "57 homes",
+      "image": "/images/redland-ranches.jpg"
+    },
+    {
+      "name": "Toscana",
+      "location": "South Florida",
+      "type": "Single-family community",
+      "detail": "24 single-family homes",
+      "image": "/images/toscana.jpg"
+    },
+    {
+      "name": "Las Palmas",
+      "location": "South Florida",
+      "type": "Residential",
+      "detail": "19 units",
+      "image": null
+    },
+    {
+      "name": "Villa Harbour",
+      "location": "South Florida",
+      "type": "Waterfront community",
+      "detail": "Community renovation",
+      "image": null
+    },
+    {
+      "name": "Custom residence",
+      "location": "Key Biscayne",
+      "type": "Custom home",
+      "detail": "New construction",
+      "image": "/images/home-key-biscayne.jpg"
+    },
+    {
+      "name": "Carlos Albizu University",
+      "location": "Miami",
+      "type": "Higher education",
+      "detail": "Second-floor remodel",
+      "image": "/images/albizu-university.jpg"
+    },
+    {
+      "name": "Chili's at FIU Graham Center",
+      "location": "Miami",
+      "type": "Restaurant build-out",
+      "detail": "Campus restaurant",
+      "image": "/images/chilis-fiu.jpg"
+    },
+    {
+      "name": "Starbucks",
+      "location": "Miami",
+      "type": "Restaurant build-out",
+      "detail": "Build-out",
+      "image": "/images/starbucks-buildout.jpg"
+    },
+    {
+      "name": "Oasis",
+      "location": "Key Biscayne",
+      "type": "Retail renovation",
+      "detail": "Storefront and interior",
+      "image": "/images/oasis-key-biscayne.jpg"
+    }
+  ]
+}

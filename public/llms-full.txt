@@ -1,0 +1,117 @@
+# Liquid Build
+
+> Liquid Build is an AI-powered general contractor and developer in South Florida. We develop single-family communities and build custom homes, commercial build-outs, schools and data centers across Miami-Dade, Broward and Palm Beach counties. We use AI to answer faster, estimate faster and keep permits moving, and experienced builders run every job.
+
+Contact: 305-833-5025 (call or text) · uwecerron@gmail.com · Service area: Miami-Dade County, FL, Broward County, FL, Palm Beach County, FL.
+Replies to quote requests within one business day.
+
+## Services
+- [Home Development](https://liquidbuild.vercel.app/home-development): Single-family communities from land and entitlements to sitework, model homes and production building.
+- [Design-Build](https://liquidbuild.vercel.app/design-build): One contract and one team from first sketch to final inspection, with the budget set during design.
+- [Commercial Build-Outs](https://liquidbuild.vercel.app/commercial): Restaurant, retail and office build-outs built to brand spec and opening date.
+- [Schools & Campuses](https://liquidbuild.vercel.app/schools): Charter, private and higher-education construction phased around the school calendar.
+- [Data Centers & Industrial](https://liquidbuild.vercel.app/data-centers): Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
+
+## Track record
+- 300+ homes and condo units developed by our team (Shores Development, Selenis Construction)
+- Single-family communities: Redland Ranches (57 homes), Toscana (24 homes), Las Palmas (19 units)
+- Commercial and institutional: Carlos Albizu University second-floor remodel, Chili's at FIU Graham Center, Starbucks, quick-service restaurants, Oasis in Key Biscayne
+- AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly
+
+## For AI agents
+- MCP server (Streamable HTTP, no auth): https://liquidbuild.vercel.app/api/mcp
+- Tools: get_company_info, list_projects, get_ballpark_estimate, ground_project_idea, request_quote
+- Human-readable guide: https://liquidbuild.vercel.app/agents
+- Estimates from the MCP tools are ballpark planning ranges, not bids.
+
+## Optional
+- [Full details for LLMs](https://liquidbuild.vercel.app/llms-full.txt)
+- [Liquid Permit: permits and approvals](https://liquidpermit.com/)
+- [Liquid Labor: robotics, automation and data center research](https://www.liquid-labor.com/)
+
+# Service details and FAQs
+
+## Home Development (https://liquidbuild.vercel.app/home-development)
+Single-family communities from land and entitlements to sitework, model homes and production building.
+
+**Do you develop land you don't own yet?**
+Yes. We run feasibility before you close: yield, sitework budget, utilities, flood zone and a realistic schedule, so you know what the land can become.
+
+**How many homes have you developed?**
+Our team has developed 300+ homes and condo units in South Florida, including Redland Ranches (57 homes), Toscana (24 homes) and Las Palmas (19 units).
+
+**Who handles permits and plats?**
+We coordinate plats, zoning and building permits with our sister company Liquid Permit.
+
+## Design-Build (https://liquidbuild.vercel.app/design-build)
+One contract and one team from first sketch to final inspection, with the budget set during design.
+
+**What is design-build?**
+One contract covers design, engineering, permits and construction. The team drawing the project is the team building it, so price and schedule are set early.
+
+**Is design-build cheaper?**
+It usually reduces surprises: the budget is checked during design instead of after bids come back, and permits and site work can start while drawings finish.
+
+**What do you design-build?**
+Custom homes, additions, pools, restaurant and retail interiors, school renovations and industrial buildings.
+
+## Commercial Build-Outs (https://liquidbuild.vercel.app/commercial)
+Restaurant, retail and office build-outs built to brand spec and opening date.
+
+**Which brands have you built for?**
+Our team has built out locations for Chili's (FIU Graham Center), Starbucks and quick-service restaurants in Miami, plus retail renovations such as Oasis in Key Biscayne.
+
+**Can you work while a business stays open?**
+Yes. We phase work around operating hours for renovations of open restaurants and stores.
+
+**Do you handle landlord and brand approvals?**
+Yes. We coordinate drawings, landlord work letters, brand standards and permits.
+
+## Schools & Campuses (https://liquidbuild.vercel.app/schools)
+Charter, private and higher-education construction phased around the school calendar.
+
+**Can you finish over the summer?**
+Yes. We plan school work in windows (nights, weekends and summers) so rooms are inspected and ready before class.
+
+**What school work have you done?**
+Recent campus work includes a second-floor remodel at Carlos Albizu University in Miami and Chili's at FIU's Graham Center.
+
+**Do you build charter schools?**
+Yes: new buildings, conversions of existing buildings and additions for charter and private schools.
+
+## Data Centers & Industrial (https://liquidbuild.vercel.app/data-centers)
+Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
+
+**What limits a data center schedule?**
+Usually power: utility capacity, interconnection timelines and long-lead electrical equipment. We screen sites by available megawatts and time to energize before design.
+
+**What part of a data center do you build?**
+Site and power diligence, sitework and pads, shell and core, and coordination of switchgear, generator yards and cooling plant with your engineers.
+
+**Do you build smaller edge sites?**
+Yes, including prefabricated modules and small edge facilities.
+
+# Projects
+- Redland Ranches: Single-family community, 57 homes, Redland, Miami-Dade
+- Toscana: Single-family community, 24 single-family homes, South Florida
+- Las Palmas: Residential, 19 units, South Florida
+- Villa Harbour: Waterfront community, Community renovation, South Florida
+- Custom residence: Custom home, New construction, Key Biscayne
+- Carlos Albizu University: Higher education, Second-floor remodel, Miami
+- Chili's at FIU Graham Center: Restaurant build-out, Campus restaurant, Miami
+- Starbucks: Restaurant build-out, Build-out, Miami
+- Oasis: Retail renovation, Storefront and interior, Key Biscayne
+
+# General FAQ
+
+**What does Liquid Build do?**
+Liquid Build is an AI-powered general contractor and developer in South Florida. We develop single-family communities and build custom homes, commercial build-outs, schools and data centers across Miami-Dade, Broward and Palm Beach counties. We use AI to answer faster, estimate faster and keep permits moving, and experienced builders run every job.
+
+**Where do you work?**
+Miami-Dade, Broward and Palm Beach counties. That covers Miami, Fort Lauderdale, West Palm Beach and the towns in between, including Key Biscayne, Homestead and the Redland.
+
+**How fast do you reply to a quote request?**
+Within one business day. Call or text 305-833-5025 for anything urgent.
+
+**Can my AI assistant get an estimate from you?**
+Yes. Agents can connect to our MCP server at https://liquidbuild.vercel.app/api/mcp for company info, ballpark estimates, project grounding and quote requests. See https://liquidbuild.vercel.app/agents.

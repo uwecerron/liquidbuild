@@ -1,0 +1,106 @@
+{
+  "_README": "Ballpark ranges used by the MCP tool get_ballpark_estimate and the /api/estimate endpoint. REVIEW AND ADJUST THESE TO LIQUID BUILD'S REAL PRICING before relying on them. Units: per_sqft = USD per square foot; flat = USD per project; per_mw = USD per megawatt of critical IT load; per_lot = USD per lot of horizontal sitework. Tiers: standard / mid / high finish.",
+  "reviewedBy": "",
+  "reviewedOn": "",
+  "types": {
+    "new_custom_home": {
+      "label": "New custom home",
+      "unit": "per_sqft",
+      "tiers": {"standard": [260, 350], "mid": [350, 475], "high": [475, 700]},
+      "weeks": [40, 70],
+      "notes": "Conditioned area. Excludes land, pool, landscaping, furniture and design fees unless design-build."
+    },
+    "addition": {
+      "label": "Home addition",
+      "unit": "per_sqft",
+      "tiers": {"standard": [275, 375], "mid": [375, 500], "high": [500, 700]},
+      "weeks": [16, 30],
+      "notes": "Additions cost more per square foot than new homes because of tie-ins to the existing structure."
+    },
+    "whole_home_renovation": {
+      "label": "Whole-home renovation",
+      "unit": "per_sqft",
+      "tiers": {"standard": [110, 175], "mid": [175, 275], "high": [275, 400]},
+      "weeks": [12, 30],
+      "notes": "In a flood zone, work over 50% of the structure's value can trigger FEMA substantial-improvement rules."
+    },
+    "kitchen_remodel": {
+      "label": "Kitchen remodel",
+      "unit": "flat",
+      "tiers": {"standard": [40000, 75000], "mid": [75000, 125000], "high": [125000, 200000]},
+      "weeks": [6, 12]
+    },
+    "bathroom_remodel": {
+      "label": "Bathroom remodel",
+      "unit": "flat",
+      "tiers": {"standard": [20000, 35000], "mid": [35000, 60000], "high": [60000, 100000]},
+      "weeks": [4, 8]
+    },
+    "pool": {
+      "label": "Pool and spa",
+      "unit": "flat",
+      "tiers": {"standard": [70000, 100000], "mid": [100000, 150000], "high": [150000, 250000]},
+      "weeks": [10, 20]
+    },
+    "impact_windows_doors": {
+      "label": "Impact windows and doors",
+      "unit": "flat",
+      "tiers": {"standard": [25000, 45000], "mid": [45000, 80000], "high": [80000, 150000]},
+      "weeks": [8, 16],
+      "notes": "Typical single-family home. Product lead times drive the schedule."
+    },
+    "restaurant_buildout": {
+      "label": "Restaurant build-out",
+      "unit": "per_sqft",
+      "tiers": {"standard": [175, 275], "mid": [275, 400], "high": [400, 600]},
+      "weeks": [10, 20],
+      "notes": "Second-generation spaces with existing grease trap and hood are at the low end."
+    },
+    "retail_office_ti": {
+      "label": "Retail or office tenant improvement",
+      "unit": "per_sqft",
+      "tiers": {"standard": [65, 120], "mid": [120, 200], "high": [200, 320]},
+      "weeks": [6, 14]
+    },
+    "school_renovation": {
+      "label": "School or campus renovation",
+      "unit": "per_sqft",
+      "tiers": {"standard": [120, 200], "mid": [200, 300], "high": [300, 425]},
+      "weeks": [8, 16],
+      "notes": "Phased around the school calendar; summer windows are the usual target."
+    },
+    "new_school": {
+      "label": "New charter or private school building",
+      "unit": "per_sqft",
+      "tiers": {"standard": [275, 350], "mid": [350, 450], "high": [450, 600]},
+      "weeks": [52, 90]
+    },
+    "warehouse_industrial": {
+      "label": "Warehouse or light industrial (shell)",
+      "unit": "per_sqft",
+      "tiers": {"standard": [110, 160], "mid": [160, 230], "high": [230, 320]},
+      "weeks": [36, 60]
+    },
+    "data_center": {
+      "label": "Data center (all-in construction)",
+      "unit": "per_mw",
+      "tiers": {"standard": [9000000, 12000000], "mid": [12000000, 15000000], "high": [15000000, 20000000]},
+      "weeks": [60, 130],
+      "notes": "Per MW of critical IT load, including electrical and mechanical systems. Utility interconnection and long-lead switchgear, transformers and generators usually set the schedule."
+    },
+    "community_sitework": {
+      "label": "Single-family community sitework (horizontal)",
+      "unit": "per_lot",
+      "tiers": {"standard": [45000, 70000], "mid": [70000, 100000], "high": [100000, 150000]},
+      "weeks": [26, 60],
+      "notes": "Clearing, fill, roads, drainage, water and sewer per lot. Homes priced separately with new_custom_home or production rates."
+    }
+  },
+  "regionFactors": {
+    "miami-dade": 1.05,
+    "broward": 1.0,
+    "palm beach": 1.02,
+    "monroe": 1.2,
+    "default": 1.0
+  }
+}

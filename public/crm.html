@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Liquid Build CRM</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/crm.css">
+</head>
+<body>
+
+<!-- Login -->
+<section id="login" class="login" hidden>
+  <form id="login-form" class="login-card">
+    <div class="logo"><b>liquid</b><i>build</i> <span class="tag">CRM</span></div>
+    <label>Email<input name="email" type="email" autocomplete="username" required></label>
+    <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+    <button class="btn primary" type="submit">Log in</button>
+    <p class="err" id="login-err" role="alert"></p>
+  </form>
+</section>
+
+<!-- App -->
+<div id="app" hidden>
+  <header class="top">
+    <div class="logo"><b>liquid</b><i>build</i> <span class="tag">CRM</span></div>
+    <nav class="tabs" aria-label="Views">
+      <button data-view="board" class="on">Pipeline</button>
+      <button data-view="list">List</button>
+      <button data-view="team">Team</button>
+    </nav>
+    <input id="search" type="search" placeholder="Search name, phone, project…" aria-label="Search leads">
+    <label class="mine"><input type="checkbox" id="mine"> Mine</label>
+    <button class="btn primary" id="new-lead-btn">New lead</button>
+    <div class="me">
+      <button id="me-btn" class="avatar" aria-haspopup="true" aria-expanded="false"></button>
+      <div id="me-menu" class="menu" hidden>
+        <div class="menu-head" id="me-name"></div>
+        <button id="pw-btn">Change password</button>
+        <button id="logout-btn">Log out</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="statusbar" id="statusbar"></div>
+
+  <main>
+    <section id="view-board" class="board"></section>
+    <section id="view-list" class="list" hidden></section>
+    <section id="view-team" class="team" hidden></section>
+  </main>
+</div>
+
+<!-- Lead drawer -->
+<aside id="drawer" class="drawer" hidden aria-label="Lead details">
+  <div class="drawer-inner" id="drawer-body"></div>
+</aside>
+<div id="scrim" class="scrim" hidden></div>
+
+<!-- Modal -->
+<dialog id="modal"><form method="dialog" id="modal-form"></form></dialog>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="/crm.js"></script>
+</body>
+</html>

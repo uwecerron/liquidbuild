@@ -1,0 +1,35 @@
+{
+  "name": "liquid-build",
+  "title": "Liquid Build: construction estimates and help",
+  "description": "Liquid Build is an AI-powered general contractor and developer in South Florida. We develop single-family communities and build custom homes, commercial build-outs, schools and data centers across Miami-Dade, Broward and Palm Beach counties. We use AI to answer faster, estimate faster and keep permits moving, and experienced builders run every job.",
+  "url": "https://liquidbuild.vercel.app/api/mcp",
+  "transport": "streamable-http",
+  "authentication": "none",
+  "tools": [
+    {
+      "name": "get_company_info",
+      "description": "Who we are, services, service area, contact details and track record."
+    },
+    {
+      "name": "list_projects",
+      "description": "Past projects with type, location and scope."
+    },
+    {
+      "name": "get_ballpark_estimate",
+      "description": "Rough cost range for a project type, size, finish level and location. Not a bid."
+    },
+    {
+      "name": "ground_project_idea",
+      "description": "Turn an idea into a grounded plan: permits, South Florida code issues (HVHZ, flood zones), phases, timeline, risks and questions to answer."
+    },
+    {
+      "name": "request_quote",
+      "description": "Send your project to our team. We reply within one business day by phone, text or email."
+    }
+  ],
+  "contact": {
+    "phone": "305-833-5025",
+    "email": "uwecerron@gmail.com"
+  },
+  "website": "https://liquidbuild.vercel.app"
+}

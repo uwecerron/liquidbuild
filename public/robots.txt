@@ -1,0 +1,99 @@
+# Search engines and AI assistants are welcome.
+User-agent: GPTBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Claude-User
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Applebot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Bingbot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: Meta-ExternalAgent
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: CCBot
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: MistralAI-User
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+User-agent: *
+Allow: /
+Disallow: /crm
+Disallow: /api/crm
+
+Sitemap: https://liquidbuild.vercel.app/sitemap.xml
+# LLM summary: https://liquidbuild.vercel.app/llms.txt
+# MCP server for agents: https://liquidbuild.vercel.app/api/mcp

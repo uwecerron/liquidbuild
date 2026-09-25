@@ -1,24 +1,78 @@
-# liquid build — website
+# Liquid Build: website, CRM and AI agent server
 
-Static pages in `public/` + one Vercel function (`api/quote.js`) that emails quote requests.
+Everything runs on Vercel from this folder.
 
-## Deploy to Vercel
-1. `npx vercel` in this folder (first time: log in, accept defaults — no framework, no build command).
-2. `npx vercel --prod` to publish.
-   Or push this folder to GitHub and import it at vercel.com/new.
+| Part | Where | What it does |
+|---|---|---|
+| Website | `/`, `/home-development`, `/design-build`, `/commercial`, `/schools`, `/data-centers`, `/agents` | Pages, ballpark estimator, quote form |
+| CRM | `/crm` | Pipeline board, texts, emails, notes, bids, team logins |
+| MCP server | `/api/mcp` | Lets AI assistants get estimates, plan projects and request quotes |
+| SEO files | `/sitemap.xml`, `/robots.txt`, `/llms.txt`, `/llms-full.txt`, `/.well-known/mcp.json` | Help Google, Bing and AI assistants find and understand the site |
 
-## Quote form email
-Leads go to `uwecerron@gmail.com` (change with the `LEAD_EMAIL` env var).
-- **Default (no setup):** relayed through FormSubmit. The FIRST submission on the live site sends an
-  "Activate form" email to that inbox — click it once, then every lead arrives.
-- **Better (optional):** create a free Resend account, add `RESEND_API_KEY` in Vercel → Settings →
-  Environment Variables, and redeploy. Leads then come straight from Resend.
-Every lead is also printed in Vercel → Project → Logs, so nothing is lost if email fails.
+## 1. Deploy
 
-## License number
-Set `LICENSE_NUMBER` (e.g. `CGC000231`) in Vercel env vars once the license is qualified for
-Liquid Build LLC; the footer shows it automatically. No code change needed.
+Push to GitHub (`git push`). Vercel builds automatically. No build command is needed.
 
-## Edit pages
-Copy lives in `build.py`. Edit it, run `python3 build.py`, then redeploy.
-Preview locally: `npm run dev` → http://localhost:3000
+## 2. Turn on the CRM (about 10 minutes)
+
+In Vercel, open the project and go to **Storage**, then **Create Database**, then **Neon (Postgres)**. Connect it to this project.
+Vercel adds `DATABASE_URL` for you.
+
+Then go to **Settings**, then **Environment Variables**, and add:
+
+| Name | Value |
+|---|---|
+| `SESSION_SECRET` | A long random string (40+ characters). Keeps logins secure. |
+| `ADMIN_EMAIL` | The email you will log in with, e.g. `uwecerron@gmail.com` |
+| `ADMIN_PASSWORD` | A strong password for your first login (8+ characters) |
+| `ADMIN_NAME` | Your name |
+| `SITE_URL` | Your live address, e.g. `https://liquidbuild.com` |
+
+Redeploy, open `/crm` and log in. Tables are created on first use. Add your team under **Team**.
+After the first login you can delete `ADMIN_PASSWORD` from Vercel. The account stays.
+
+## 3. Turn on texting (Twilio)
+
+1. Create a Twilio account and buy a local number.
+2. Register the number for business texting (A2P 10DLC) in the Twilio console. US carriers require this. It usually takes 1 to 3 weeks.
+3. Add to Vercel: `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM` (the number, like `+19545551234`).
+4. In Twilio, set the number's "A message comes in" webhook to `https://<your-site>/api/sms` (HTTP POST).
+5. Optional: `OWNER_PHONE` (your cell) to get a text for every new lead. `AUTO_TEXT_TEMPLATE` to change the automatic reply. You can use `{name}` and `{project}`.
+
+New leads who tick "Text me about this request" get an automatic text right away. Replies show up in the CRM.
+If someone texts STOP, the CRM blocks further texts to them.
+
+## 4. Turn on email (Resend)
+
+1. Create a Resend account and verify your domain (it gives you DNS records to add).
+2. Add to Vercel: `RESEND_API_KEY` and `RESEND_FROM` (for example `Liquid Build <quotes@liquidbuild.com>`).
+
+Until Resend is set up, new-lead alerts go to `uwecerron@gmail.com` through FormSubmit. The first alert asks you to click
+"Activate". Do it once. Change the inbox with `LEAD_EMAIL`.
+
+## 5. Review the estimate ranges
+
+`data/estimating.json` holds the ballpark price ranges used by the website and the MCP server.
+**These are starting numbers. Replace them with your real pricing**, then fill in `reviewedBy` and `reviewedOn`.
+
+## 6. Get found
+
+- Google Search Console and Bing Webmaster Tools: add the site and submit `https://<your-site>/sitemap.xml`.
+- Create a Google Business Profile with the same name, phone and service area.
+- `robots.txt` welcomes GPTBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers. `/crm` stays private.
+- When you get a custom domain, set `SITE_URL`, change `url` in `data/company.json`, then run `python3 build.py`.
+
+## 7. License number
+
+Once the license is qualified for Liquid Build LLC, add `LICENSE_NUMBER` in Vercel. The footer shows it automatically.
+
+## Editing
+
+- Page copy: `build.py`. Company facts, services and FAQs: `data/company.json`. Then run `python3 build.py`.
+- Preview locally: `npm install`, then `npm run dev`, then open http://localhost:3000. The CRM needs `DATABASE_URL` locally too.
+
+## Connect an AI assistant (MCP)
+
+Add `https://<your-site>/api/mcp` as a remote MCP server or custom connector.
+Tools: `get_company_info`, `list_projects`, `get_ballpark_estimate`, `ground_project_idea`, `request_quote`.
+Quote requests from agents land in the CRM tagged "AI agent".
