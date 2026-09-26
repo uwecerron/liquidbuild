@@ -1,7 +1,7 @@
 // Liquid Build CRM front end. Plain JavaScript, no build step.
 (() => {
   const STAGE_LABEL = { new: 'New', contacted: 'Contacted', site_visit: 'Site visit', bid_sent: 'Bid sent', won: 'Won', lost: 'Lost' };
-  const SOURCE_LABEL = { website: 'Website', 'ai-agent': 'AI agent', sms: 'Text', manual: 'Added by team' };
+  const SOURCE_LABEL = { website: 'Website', 'ai-agent': 'AI agent', sms: 'Text', manual: 'Added by team', chat: 'AI chat' };
   const state = { me: null, stages: Object.keys(STAGE_LABEL), integrations: {}, leads: [], users: [], view: 'board', openId: null, composer: 'note' };
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];

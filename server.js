@@ -40,7 +40,7 @@ http.createServer(async (req, res) => {
       const data = req.method === 'POST' ? parse(await readBody(req), req.headers['content-type']) : Object.fromEntries(url.searchParams);
       res.writeHead(200, { 'Content-Type': 'application/json' }); return res.end(JSON.stringify(ballpark(data)));
     }
-    if (['/api/ground', '/api/upload', '/api/file'].includes(p)) {
+    if (['/api/ground', '/api/upload', '/api/file', '/api/chat'].includes(p)) {
       req.body = req.method === 'POST' ? parse(await readBody(req), req.headers['content-type']) : {};
       req.query = Object.fromEntries(url.searchParams);
       res.status = (c) => { res.statusCode = c; return res; };

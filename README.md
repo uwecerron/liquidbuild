@@ -59,19 +59,27 @@ If you created a public store instead, add `BLOB_ACCESS=public`.
 
 After changing the upload library, rebuild the browser file: `npx esbuild scripts/blob-entry.mjs --bundle --minify --format=iife --outfile=public/vendor/blob-upload.js`.
 
-## 6. Review the estimate ranges
+## 6. Turn on the AI design assistant (chat box)
+
+Create an API key at console.anthropic.com (add a spending limit under Billing), then add `ANTHROPIC_API_KEY` in Vercel and redeploy.
+A "Design with AI" button appears on every page. Homeowners describe a project or send photos; the assistant suggests ideas,
+gives ballparks with your estimating ranges, and sends the request to the CRM (source "AI chat") once they say yes.
+Optional: `ANTHROPIC_MODEL` to change the model (default `claude-sonnet-5`; `claude-haiku-4-5-20251001` is cheaper and faster).
+Without the key the button stays hidden.
+
+## 7. Review the estimate ranges
 
 `data/estimating.json` holds the ballpark price ranges used by the website and the MCP server.
 **These are starting numbers. Replace them with your real pricing**, then fill in `reviewedBy` and `reviewedOn`.
 
-## 7. Get found
+## 8. Get found
 
 - Google Search Console and Bing Webmaster Tools: add the site and submit `https://<your-site>/sitemap.xml`.
 - Create a Google Business Profile with the same name, phone and service area.
 - `robots.txt` welcomes GPTBot, ClaudeBot, PerplexityBot, Google-Extended and other AI crawlers. `/crm` stays private.
 - When you get a custom domain, set `SITE_URL`, change `url` in `data/company.json`, then run `python3 build.py`.
 
-## 8. License number
+## 9. License number
 
 Once the license is qualified for Liquid Build LLC, add `LICENSE_NUMBER` in Vercel. The footer shows it automatically.
 

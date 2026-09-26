@@ -42,7 +42,11 @@ IDEA_EXAMPLES = ["Add a second story with 2 bedrooms and a bath", "Turn my garag
 
 
 def logo(cls=""):
-    return f'<span class="logo {cls}"><b>liquid</b><i>build</i></span>'
+    return (f'<span class="logo {cls}"><svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#0F6B78"/>'
+            '<path d="M14 30 L32 15 L50 30" fill="none" stroke="#F5F2EC" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'
+            '<path d="M13 40 q4.75 -5 9.5 0 t9.5 0 t9.5 0 t9.5 0" fill="none" stroke="#6FC3CF" stroke-width="4" stroke-linecap="round"/>'
+            '<path d="M13 50 q4.75 -5 9.5 0 t9.5 0 t9.5 0 t9.5 0" fill="none" stroke="#F5F2EC" stroke-width="4" stroke-linecap="round"/></svg>'
+            '<b>liquid</b><i>build</i></span>')
 
 
 def header(active, over_photo):
@@ -119,6 +123,7 @@ def quote_form(preset, headline="Let's <em>build.</em>", sub="Land, a lot or a l
         <div class="examples"><span class="muted small">Need a start? Tap one:</span>{examples}</div>
         <button type="button" class="btn line" data-shape>Shape my idea</button>
         <div class="plan" data-plan aria-live="polite" hidden></div>
+        <p class="muted small" data-open-chat-wrap>Rather talk it through? <a href="#" data-open-chat>Chat with our AI design assistant</a>. It can look at photos too.</p>
       </div>
       <div class="qf-when" data-when="price">
         <label>Size, if you know it<input name="size" type="text" inputmode="numeric" placeholder="Square feet, lots or megawatts"></label>
@@ -263,7 +268,7 @@ def page(filename, title, desc, body, active="", over_photo=True, index=True, og
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/logo.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <script type="application/ld+json">{ld}</script>
 </head>
 <body>
@@ -273,6 +278,7 @@ def page(filename, title, desc, body, active="", over_photo=True, index=True, og
 </main>
 {footer()}
 <script src="/site.js" defer></script>
+<script src="/chat.js" defer></script>
 </body>
 </html>"""
 
@@ -491,6 +497,12 @@ pages["design-build.html"] = page(
         ("Faster start", "Permits and early site work move while drawings are finished."),
         ("Fewer change orders", "The people drawing it are the people building it."),
     ])
+    + """
+<section class="wrap ai-band" data-open-chat-wrap>
+  <div><h2 class="display">Sketch it with <em>AI</em> first.</h2>
+  <p class="muted lead">Describe the project or send a photo of the space. Our design assistant suggests layouts and finishes, gives a ballpark, and sends it to the team when you're ready.</p></div>
+  <div class="ai-band-cta"><a href="#quote" class="btn accent" data-open-chat>Open the design assistant</a><a href="#quote" class="qf-back">or fill out the quote form</a></div>
+</section>"""
     + steps("How it works", [
         ("Program", "What you need, where, and for how much."),
         ("Design", "Architects and engineers draw to the budget."),
