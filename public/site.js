@@ -219,7 +219,7 @@ document.querySelectorAll('form.qf').forEach((form) => {
 
 // Show the license number only when the server has one configured.
 SITE_CONFIG.then((c) => {
-  if (c && c.license) document.querySelectorAll('[data-license]').forEach((el) => (el.textContent = 'Florida Certified General Contractor · ' + c.license));
+  if (c && c.license) document.querySelectorAll('[data-license]').forEach((el) => (el.textContent = 'Florida Certified General Contractor · ' + c.license + (c.licenseSince ? ' · Licensed since ' + c.licenseSince : '')));
 }).catch(() => {});
 
 // Ballpark estimator on the home page.

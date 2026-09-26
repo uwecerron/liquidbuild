@@ -82,6 +82,7 @@ Without the key the button stays hidden.
 ## 9. License number
 
 Once the license is qualified for Liquid Build LLC, add `LICENSE_NUMBER` in Vercel. The footer shows it automatically.
+Optional `LICENSE_SINCE` (a year, e.g. `2004`) adds "Licensed since 2004". Florida requires the license number on all contractor advertising (s. 489.119), so add it to ads, trucks and social bios at the same time.
 
 ## Editing
 

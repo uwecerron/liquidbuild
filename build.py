@@ -458,8 +458,8 @@ pages["index.html"] = page(
     "index.html",
     "Liquid Build | South Florida's AI-Powered Builder & Developer",
     "AI-powered general contractor and developer in South Florida. Communities, custom homes, commercial, schools and data centers. 10,000+ homes since 1950.",
-    hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "From raw land<br><em>to keys in hand.</em>",
-         "The AI-powered general contractor for South Florida. We develop and build communities, custom homes, commercial space, schools and data centers.", tall=True)
+    hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "The AI general<br><em>contractor.</em>",
+         "Ballparks in seconds, an AI design assistant and quotes the same day, backed by a South Florida team that has built here since 1950. Homes, communities, commercial, schools and data centers.", tall=True)
     + stats([("300+", "homes &amp; condo units developed"), ("1950", "Shores Development founded"), ("Land → Keys", "sitework, vertical, finishes"), ("AI-powered", "estimating, follow-up and permits")])
     + AI_SECTION + ESTIMATOR + SECTORS + COMMUNITIES + INSIDE + CUSTOM_HOMES + COMMERCIAL_GRID
     + faq_section(GENERAL_FAQS)
