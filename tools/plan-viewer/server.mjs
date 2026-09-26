@@ -16,7 +16,7 @@ http.createServer((req,res)=>{
  if(name==='/config'){res.setHeader('Content-Type','application/json');res.end(JSON.stringify({sample:sample?path.basename(sample):null}));return;}
  let file;
  if(name==='/sample.pdf' && sample) file=sample;
- else if(['/','/index.html','/app.mjs','/style.css'].includes(name)) file=path.join(root,name==='/'?'index.html':name.slice(1));
+ else if(['/','/index.html','/app.mjs','/style.css','/studio.html','/studio.css','/studio.bundle.mjs'].includes(name)) file=path.join(root,name==='/'?'index.html':name.slice(1));
  else if(name.startsWith('/vendor/')){
   const base=path.join(root,'node_modules/pdfjs-dist');file=path.resolve(base,name.slice(8));
   if(!file.startsWith(base+path.sep)){res.writeHead(403).end();return;}
