@@ -6,11 +6,11 @@ Contact: 305-833-5025 (call or text) · uwecerron@gmail.com · Service area: Mia
 Replies to quote requests within one business day.
 
 ## Services
-- [Home Development](https://liquid-build.com/home-development): Single-family communities from land and entitlements to sitework, model homes and production building.
-- [Design-Build](https://liquid-build.com/design-build): One contract and one team from first sketch to final inspection, with the budget set during design.
-- [Commercial Build-Outs](https://liquid-build.com/commercial): Restaurant, retail and office build-outs built to brand spec and opening date.
-- [Schools & Campuses](https://liquid-build.com/schools): Charter, private and higher-education construction phased around the school calendar.
-- [Data Centers & Industrial](https://liquid-build.com/data-centers): Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
+- [Home Development](https://www.liquid-build.com/home-development): Single-family communities from land and entitlements to sitework, model homes and production building.
+- [Design-Build](https://www.liquid-build.com/design-build): One contract and one team from first sketch to final inspection, with the budget set during design.
+- [Commercial Build-Outs](https://www.liquid-build.com/commercial): Restaurant, retail and office build-outs built to brand spec and opening date.
+- [Schools & Campuses](https://www.liquid-build.com/schools): Charter, private and higher-education construction phased around the school calendar.
+- [Data Centers & Industrial](https://www.liquid-build.com/data-centers): Power-first site selection, sitework, shell and electrical and mechanical coordination for data centers and industrial buildings.
 
 ## Track record
 - Shores Development, founded in 1950 by Sam Rosen: a second-generation Miami-Dade developer whose team has developed, built and sold more than 10,000 single-family and condo units in South Florida
@@ -20,19 +20,19 @@ Replies to quote requests within one business day.
 - AI-powered operations: instant ballpark estimates, same-day lead response, permit tracking with Liquid Permit, and an MCP server so AI assistants can plan projects and request quotes directly
 
 ## Track record and local pages
-- [Track record: 10,000+ homes since 1950](https://liquid-build.com/track-record)
-- [General contractor in Miami](https://liquid-build.com/general-contractor-miami)
-- [General contractor in Fort Lauderdale](https://liquid-build.com/general-contractor-fort-lauderdale)
-- [General contractor in Palm Beach](https://liquid-build.com/general-contractor-palm-beach)
-- [En español](https://liquid-build.com/es)
+- [Track record: 10,000+ homes since 1950](https://www.liquid-build.com/track-record)
+- [General contractor in Miami](https://www.liquid-build.com/general-contractor-miami)
+- [General contractor in Fort Lauderdale](https://www.liquid-build.com/general-contractor-fort-lauderdale)
+- [General contractor in Palm Beach](https://www.liquid-build.com/general-contractor-palm-beach)
+- [En español](https://www.liquid-build.com/es)
 
 ## For AI agents
-- MCP server (Streamable HTTP, no auth): https://liquid-build.com/api/mcp
+- MCP server (Streamable HTTP, no auth): https://www.liquid-build.com/api/mcp
 - Tools: get_company_info, list_projects, get_ballpark_estimate, ground_project_idea, get_quote_options, request_quote
-- Human-readable guide: https://liquid-build.com/agents
+- Human-readable guide: https://www.liquid-build.com/agents
 - Estimates from the MCP tools are ballpark planning ranges, not bids.
 
 ## Optional
-- [Full details for LLMs](https://liquid-build.com/llms-full.txt)
+- [Full details for LLMs](https://www.liquid-build.com/llms-full.txt)
 - [Liquid Permit: permits and approvals](https://liquidpermit.com/)
 - [Liquid Labor: robotics, automation and data center research](https://www.liquid-labor.com/)

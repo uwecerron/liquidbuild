@@ -94,6 +94,6 @@ Allow: /
 Disallow: /crm
 Disallow: /api/crm
 
-Sitemap: https://liquid-build.com/sitemap.xml
-# LLM summary: https://liquid-build.com/llms.txt
-# MCP server for agents: https://liquid-build.com/api/mcp
+Sitemap: https://www.liquid-build.com/sitemap.xml
+# LLM summary: https://www.liquid-build.com/llms.txt
+# MCP server for agents: https://www.liquid-build.com/api/mcp
