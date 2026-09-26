@@ -618,7 +618,7 @@ pages["privacy.html"] = page(
   <p class="muted">Last updated {TODAY}. Liquid Build LLC ("we") runs this website, our quote forms, our text messaging and our MCP server for AI assistants.</p>
   <h2>What we collect</h2>
   <ul>
-    <li><b>What you send us:</b> your name, phone, email, project type, location and project details, from our forms, by text, by email, or through an AI assistant using our <code>request_quote</code> tool.</li>
+    <li><b>What you send us:</b> your name, phone, email, project type, location, budget, timeline, project details and any plans or photos, from our forms, by text, by email, or through an AI assistant using our <code>request_quote</code> tool.</li>
     <li><b>Estimate requests:</b> the project type, size, finish level and city you enter in the ballpark estimator or send to our MCP tools. These are not stored with your name.</li>
     <li><b>Technical data:</b> your IP address and browser or client name, used to stop spam and abuse.</li>
   </ul>
@@ -629,9 +629,11 @@ pages["privacy.html"] = page(
     <li>We do not sell your information and we do not use it for third-party advertising.</li>
   </ul>
   <h2>Who helps us</h2>
-  <p>We use service providers to run the site and talk with you: Vercel (hosting), Neon (database), Twilio (text messages), Resend and FormSubmit (email). They process data only to provide those services.</p>
+  <p>We use service providers to run the site and talk with you: Vercel (hosting and file storage), Neon (database), Twilio (text messages), Resend and FormSubmit (email), and Anthropic (the AI model behind our design assistant). They process data only to provide those services.</p>
   <h2>AI assistants and our MCP server</h2>
   <p>Our MCP server at <code>{SITE}/api/mcp</code> does not require an account. Estimate and planning tools do not store personal information. When an assistant calls <code>request_quote</code>, the name, contact details and project description it sends are saved as a quote request, the same as our website form. We do not receive your conversation with the assistant beyond what the tool call contains.</p>
+  <h2>Our AI design assistant and file uploads</h2>
+  <p>When you use the design assistant chat on this site, the messages and photos you send are processed by Anthropic's Claude API to write replies. We don't save the chat unless you ask us to send your request to our team; then the summary, your contact details and any photos are saved with your quote request. Plans and photos you upload on the quote form are stored privately and only our team can open them.</p>
   <h2>How long we keep it</h2>
   <p>We keep quote requests and project records as long as needed to respond, do the work and meet legal and warranty obligations. Ask us to delete your information at any time.</p>
   <h2>Your choices</h2>
