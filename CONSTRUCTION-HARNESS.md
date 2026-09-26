@@ -97,7 +97,7 @@ MVP: editable project JSON and dimensioned SVG; a draft PDF report after export 
 Later: elevations and schedules derived from supported model elements, then interchange formats demanded by pilot designers. Accepting a DWG upload does not mean the app can edit or faithfully export DWG. Preserve originals and clearly identify unsupported imports.
 
 ## Build order and acceptance
-
+here 
 1. **Manual drafting foundation:** project access, blank-room editor, dimensions, openings, save/reload, revisions, undo, and SVG export. Acceptance: a user can draw a measured room, reopen it, and obtain identical geometry and area; another project owner cannot access it.
 2. **AI edits:** typed proposals, change preview, constraint checks, atomic acceptance, and retry protection. Acceptance: a supported layout change works; a stale revision, missing wall, duplicated command, or unauthorized edit cannot corrupt the plan.
 3. **Document assistance:** private PDF/image ingestion, known-dimension calibration, provisional extraction, and source-linked corrections. Acceptance: wrong scale, changed source, and uncertain extraction remain visible and cannot silently become confirmed measurements.

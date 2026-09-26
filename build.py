@@ -58,11 +58,12 @@ def header(active, over_photo):
     )
     return f"""
 <header class="site-header{' on-photo' if over_photo else ''}">
+<div class="waitbar">Now taking waitlist requests. Construction contracts start once our contractor license transfer is complete. Need a permit now? <a href="https://liquidpermit.com/">Liquid Permit</a> can help today.</div>
   <div class="wrap bar">
     <a href="/" class="brand" aria-label="liquid build home">{logo()}</a>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Open menu">
     <label for="nav-toggle" class="burger" aria-hidden="true"><span></span><span></span></label>
-    <nav aria-label="Main">{links}<a href="#quote" class="pill">Get a quote</a></nav>
+    <nav aria-label="Main">{links}<a href="#quote" class="pill">Join the waitlist</a></nav>
   </div>
 </header>"""
 
@@ -91,7 +92,8 @@ def quote_form(preset, headline="Let's <em>build.</em>", sub="Land, a lot or a l
   <div class="quote-copy">
     <h2 class="display">{headline}</h2>
     <p class="muted lead">{sub}</p>
-    <ol class="next-steps"><li>Tell us what you're building. Takes about a minute.</li><li>Get a text back right away.</li><li>We call within one business day to set a site visit or a call.</li></ol>
+    <ol class="next-steps"><li>Tell us what you're building. Takes about a minute.</li><li>You're on the waitlist and get a text right away.</li><li>We call to plan it with you. Construction contracts start once our license transfer is complete.</li></ol>
+    <p class="muted small">Need a permit sooner? <a href="https://liquidpermit.com/">Liquid Permit</a> can help now.</p>
     <p class="contact-lines"><a href="tel:{PHONE_TEL}">{PHONE}</a><br><a href="mailto:{EMAIL}">{EMAIL}</a><br><span class="muted">{AREA}</span></p>
   </div>
   <form class="quote-form qf" action="/api/quote" method="post" data-quote novalidate>
@@ -153,7 +155,7 @@ def quote_form(preset, headline="Let's <em>build.</em>", sub="Land, a lot or a l
       <input type="hidden" name="page" value="">
       <input type="hidden" name="files" value="">
       <input type="hidden" name="plan" value="">
-      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="submit" class="btn dark">Send my request</button></div>
+      <div class="qf-nav"><button type="button" class="qf-back" data-back>Back</button><button type="submit" class="btn dark">Join the waitlist</button></div>
       <p class="form-status" role="status" aria-live="polite"></p>
     </fieldset>
     <div class="qf-done" data-done hidden tabindex="-1"></div>
@@ -285,7 +287,7 @@ def page(filename, title, desc, body, active="", over_photo=True, index=True, og
 </html>"""
 
 
-def hero(img, alt, h1, sub, cta="Start your project", tall=False):
+def hero(img, alt, h1, sub, cta="Join the waitlist", tall=False):
     return f"""
 <section class="hero{' tall' if tall else ''}">
   <img src="/images/{img}" alt="{html.escape(alt)}" fetchpriority="high">
@@ -459,7 +461,7 @@ pages["index.html"] = page(
     "Liquid Build | South Florida's AI-Powered Builder & Developer",
     "AI-powered general contractor and developer in South Florida. Communities, custom homes, commercial, schools and data centers. 10,000+ homes since 1950.",
     hero("dev-aerial.jpg", "Aerial view of a new single-family community under construction", "The AI-powered<br><em>general contractor.</em>",
-         "Ballparks in seconds, an AI design assistant and quotes the same day, backed by a South Florida team that has built here since 1950. Homes, communities, commercial, schools and data centers.", tall=True)
+         "Ballparks in seconds, an AI design assistant and a spot on our build waitlist, backed by a South Florida team that has built here since 1950. Homes, communities, commercial, schools and data centers.", tall=True)
     + stats([("300+", "homes &amp; condo units developed"), ("1950", "Shores Development founded"), ("Land → Keys", "sitework, vertical, finishes"), ("AI-powered", "estimating, follow-up and permits")])
     + AI_SECTION + ESTIMATOR + SECTORS + COMMUNITIES + INSIDE + CUSTOM_HOMES + COMMERCIAL_GRID
     + faq_section(GENERAL_FAQS)

@@ -1,0 +1,1 @@
+{"name":"liquid-build-local-plan-viewer","private":true,"type":"module","scripts":{"start":"node server.mjs"},"dependencies":{"pdfjs-dist":"6.3.289"}}

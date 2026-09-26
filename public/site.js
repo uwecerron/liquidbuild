@@ -201,9 +201,9 @@ document.querySelectorAll('form.qf').forEach((form) => {
       const done = form.querySelector('[data-done]');
       steps.forEach((s) => (s.hidden = true)); top.hidden = true;
       done.hidden = false;
-      done.innerHTML = `<h3></h3><p class="muted ref"></p><ol class="next-steps"><li></li><li>We review it and call you within one business day.</li><li>Next is a site visit or a video call, then a written estimate.</li></ol>
-        <p class="small muted">Need us sooner? Call or text <a href="tel:+13058335025">305-833-5025</a>.</p>`;
-      done.querySelector('h3').textContent = `Got it, ${first}.`;
+      done.innerHTML = `<h3></h3><p class="muted ref"></p><ol class="next-steps"><li></li><li>We call you to plan the project and answer questions.</li><li>Construction contracts start once our contractor license transfer is complete. We'll let you know the day we're ready.</li></ol>
+        <p class="small muted">Need a permit sooner? <a href="https://liquidpermit.com/">Liquid Permit</a> can help now. Questions? Call or text <a href="tel:+13058335025">305-833-5025</a>.</p>`;
+      done.querySelector('h3').textContent = `You're on the waitlist, ${first}.`;
       done.querySelector('.ref').textContent = (out.reference ? 'Your reference is ' + out.reference + '. ' : '') + (files.some((f) => f.state === 'done') ? files.filter((f) => f.state === 'done').length + ' file(s) attached.' : '');
       done.querySelector('li').textContent = out.texted ? 'Check your phone. We just sent you a text.' : 'You will hear from us by ' + ({ text: 'text', call: 'phone', email: 'email' }[val('contact_pref')] || 'phone') + '.';
       done.focus();
